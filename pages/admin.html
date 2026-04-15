@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>后台管理 - 人工智能协会 · 党建文化平台</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .admin-layout { display: flex; min-height: calc(100vh - var(--nav-h)); }
+    body { padding-top: var(--nav-h); }
+  </style>
+</head>
+<body>
+  <!-- Toast -->
+  <div id="toast"></div>
+
+  <!-- Top Navigation -->
+  <nav id="topnav">
+    <div class="nav-wrap">
+      <div class="nav-logo" onclick="window.location.href='index.html'">
+        <div class="nav-logo-icon">★</div>
+        <div><div class="nav-logo-text">人工智能协会 · 党建文化</div></div>
+      </div>
+      <div class="nav-right" id="navRight" style="margin-left:auto;">
+        <button class="nav-btn" onclick="toggleTheme()">🌙 深色</button>
+        <button class="nav-btn btn-outline" onclick="window.location.href='index.html'">← 返回前台</button>
+        <button class="nav-btn nav-btn-login" onclick="window.location.href='login.html'">退出</button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="admin-layout">
+    <!-- Sidebar -->
+    <div class="admin-sidebar">
+      <div class="admin-sidebar-title">⚙️ 后台管理系统</div>
+      <div class="admin-nav-group">
+        <div class="admin-nav-group-label">数据概览</div>
+        <div class="admin-nav-item active" onclick="switchAdminPage('dashboard',this)">📊 控制台</div>
+      </div>
+      <div class="admin-nav-group">
+        <div class="admin-nav-group-label">用户管理</div>
+        <div class="admin-nav-item" onclick="switchAdminPage('users',this)">👥 用户列表</div>
+      </div>
+      <div class="admin-nav-group">
+        <div class="admin-nav-group-label">内容管理</div>
+        <div class="admin-nav-item" onclick="switchAdminPage('contents',this)">📰 党建内容</div>
+        <div class="admin-nav-item" onclick="switchAdminPage('actmgr',this)">📅 活动管理</div>
+        <div class="admin-nav-item" onclick="switchAdminPage('materials',this)">📁 资料管理</div>
+      </div>
+      <div class="admin-nav-group">
+        <div class="admin-nav-group-label">题库管理</div>
+        <div class="admin-nav-item" onclick="switchAdminPage('questions',this)">📝 题目列表</div>
+        <div class="admin-nav-item" onclick="switchAdminPage('question-add',this)">➕ 添加题目</div>
+      </div>
+      <div class="admin-nav-group">
+        <div class="admin-nav-group-label">互动管理</div>
+        <div class="admin-nav-item" onclick="switchAdminPage('messages-mgr',this)">💬 留言审核</div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="admin-main">
+      <!-- Dashboard -->
+      <div class="admin-page active" id="admin-dashboard">
+        <div class="admin-hd"><div class="admin-title">📊 控制台概览</div><div style="font-size:13px;color:var(--text3);">2024-12-15 更新</div></div>
+        <div class="stats-row">
+          <div class="stats-mini"><div class="stats-mini-num" style="color:var(--red);">36</div><div class="stats-mini-label">党员总数</div></div>
+          <div class="stats-mini"><div class="stats-mini-num" style="color:var(--blue);">120</div><div class="stats-mini-label">社团成员</div></div>
+          <div class="stats-mini"><div class="stats-mini-num" style="color:var(--gold);">58</div><div class="stats-mini-label">举办活动</div></div>
+          <div class="stats-mini"><div class="stats-mini-num" style="color:#00b45a;">12</div><div class="stats-mini-label">待审核留言</div></div>
+        </div>
+        <div class="grid-2" style="gap:20px;">
+          <div class="card" style="padding:24px;">
+            <div style="font-weight:700;font-size:15px;margin-bottom:16px;">📋 待办事项</div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:6px;background:var(--red-bg);"><span style="font-size:14px;color:var(--red);">📨 待审核留言</span><span class="badge badge-red">12条</span></div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:6px;background:var(--blue-bg);"><span style="font-size:14px;color:var(--blue);">📝 活动报名待确认</span><span class="badge badge-blue">5条</span></div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:6px;background:rgba(0,180,90,0.06);"><span style="font-size:14px;color:#00b45a;">📄 资料待审核</span><span class="badge badge-green">3条</span></div>
+            </div>
+          </div>
+          <div class="card" style="padding:24px;">
+            <div style="font-weight:700;font-size:15px;margin-bottom:16px;">📅 近期活动</div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div style="padding:10px;border-left:3px solid var(--red);background:var(--bg);border-radius:0 6px 6px 0;"><div style="font-size:14px;font-weight:600;">主题党日活动</div><div style="font-size:12px;color:var(--text3);">2024-12-20 · 报名28/50</div></div>
+              <div style="padding:10px;border-left:3px solid var(--blue);background:var(--bg);border-radius:0 6px 6px 0;"><div style="font-size:14px;font-weight:600;">AI融合研讨会</div><div style="font-size:12px;color:var(--text3);">2024-12-18 · 报名15/30</div></div>
+              <div style="padding:10px;border-left:3px solid var(--gold);background:var(--bg);border-radius:0 6px 6px 0;"><div style="font-size:14px;font-weight:600;">志愿服务活动</div><div style="font-size:12px;color:var(--text3);">2024-12-22 · 报名12/20</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Users -->
+      <div class="admin-page" id="admin-users">
+        <div class="admin-hd"><div class="admin-title">👥 用户管理</div><button class="btn btn-red btn-sm" onclick="showToast('功能开发中...')">+ 新增用户</button></div>
+        <div class="card" style="padding:0;">
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>姓名</th><th>账号</th><th>角色</th><th>状态</th><th>注册时间</th><th>操作</th></tr></thead>
+              <tbody>
+                <tr><td><strong>张明远</strong></td><td>admin</td><td><span class="badge badge-red">管理员</span></td><td><span class="badge badge-green">正常</span></td><td>2024-01-01</td><td><button class="action-btn act-edit" onclick="showToast('编辑功能开发中...')">编辑</button> <button class="action-btn act-del" onclick="showToast('删除需确认...')">删除</button></td></tr>
+                <tr><td><strong>李晓雯</strong></td><td>lixw</td><td><span class="badge badge-blue">社团管理员</span></td><td><span class="badge badge-green">正常</span></td><td>2024-02-15</td><td><button class="action-btn act-edit" onclick="showToast('编辑功能开发中...')">编辑</button> <button class="action-btn act-del" onclick="showToast('删除需确认...')">删除</button></td></tr>
+                <tr><td><strong>王浩然</strong></td><td>wanghr</td><td><span class="badge badge-gray">普通用户</span></td><td><span class="badge badge-green">正常</span></td><td>2024-03-10</td><td><button class="action-btn act-edit" onclick="showToast('编辑功能开发中...')">编辑</button> <button class="action-btn act-del" onclick="showToast('删除需确认...')">删除</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contents -->
+      <div class="admin-page" id="admin-contents">
+        <div class="admin-hd"><div class="admin-title">📰 党建内容管理</div><button class="btn btn-red btn-sm" onclick="showToast('发布功能开发中...')">+ 发布内容</button></div>
+        <div class="card" style="padding:0;">
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>标题</th><th>分类</th><th>状态</th><th>发布时间</th><th>浏览</th><th>操作</th></tr></thead>
+              <tbody>
+                <tr><td>人工智能协会2024年度党员发展大会圆满召开</td><td><span class="badge badge-red">要闻</span></td><td><span class="badge badge-green">已发布</span></td><td>2024-12-15</td><td>1,234</td><td><button class="action-btn act-edit">编辑</button> <button class="action-btn act-del">删除</button></td></tr>
+                <tr><td>关于深入开展主题教育学习活动的通知</td><td><span class="badge badge-blue">通知</span></td><td><span class="badge badge-green">已发布</span></td><td>2024-12-10</td><td>856</td><td><button class="action-btn act-edit">编辑</button> <button class="action-btn act-del">删除</button></td></tr>
+                <tr><td>AI赋能党建工作探索与实践</td><td><span class="badge badge-blue">AI党建</span></td><td><span class="badge badge-gold">待审核</span></td><td>2024-12-08</td><td>-</td><td><button class="action-btn act-approve">审核</button> <button class="action-btn act-del">删除</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Activities -->
+      <div class="admin-page" id="admin-actmgr">
+        <div class="admin-hd"><div class="admin-title">📅 活动管理</div><button class="btn btn-red btn-sm" onclick="showToast('发布功能开发中...')">+ 发布活动</button></div>
+        <div class="card" style="padding:0;">
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>活动名称</th><th>时间</th><th>状态</th><th>报名</th><th>操作</th></tr></thead>
+              <tbody>
+                <tr><td>2024年第四季度主题党日活动</td><td>2024-12-20</td><td><span class="badge badge-green">报名中</span></td><td>28/50</td><td><button class="action-btn act-edit">编辑</button> <button class="action-btn act-approve">报名列表</button> <button class="action-btn act-del">删除</button></td></tr>
+                <tr><td>AI技术与党建融合研讨会</td><td>2024-12-18</td><td><span class="badge badge-green">报名中</span></td><td>15/30</td><td><button class="action-btn act-edit">编辑</button> <button class="action-btn act-approve">报名列表</button> <button class="action-btn act-del">删除</button></td></tr>
+                <tr><td>党史学习教育专题讲座</td><td>2024-12-10</td><td><span class="badge badge-gray">已结束</span></td><td>45/45</td><td><button class="action-btn act-edit">编辑</button> <button class="action-btn act-approve">报名列表</button> <button class="action-btn act-del">删除</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Materials -->
+      <div class="admin-page" id="admin-materials">
+        <div class="admin-hd"><div class="admin-title">📁 资料管理</div><button class="btn btn-red btn-sm" onclick="showToast('上传功能开发中...')">+ 上传资料</button></div>
+        <div class="card" style="padding:0;">
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>资料名称</th><th>类型</th><th>大小</th><th>状态</th><th>下载次数</th><th>操作</th></tr></thead>
+              <tbody>
+                <tr><td>《习近平关于科技创新论述摘编》</td><td><span class="badge badge-blue">文档</span></td><td>2.3MB</td><td><span class="badge badge-green">已发布</span></td><td>256</td><td><button class="action-btn act-edit">编辑</button> <button class="action-btn act-del">删除</button></td></tr>
+                <tr><td>党史学习教育专题讲座视频</td><td><span class="badge badge-red">视频</span></td><td>256MB</td><td><span class="badge badge-green">已发布</span></td><td>128</td><td><button class="action-btn act-edit">编辑</button> <button class="action-btn act-del">删除</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Messages -->
+      <div class="admin-page" id="admin-messages-mgr">
+        <div class="admin-hd"><div class="admin-title">💬 留言审核管理</div></div>
+        <div class="card" style="padding:0;">
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>留言人</th><th>内容摘要</th><th>类型</th><th>状态</th><th>时间</th><th>操作</th></tr></thead>
+              <tbody>
+                <tr><td>匿名用户</td><td style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">希望增加更多线下党建活动...</td><td><span class="badge badge-blue">建议</span></td><td><span class="badge badge-gold">待审核</span></td><td>2024-12-15</td><td><button class="action-btn act-approve" onclick="showToast('已审核通过！')">审核</button> <button class="action-btn act-del">删除</button></td></tr>
+                <tr><td>张同学</td><td style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">人工智能协会将先进AI技术与党建工作有机融合...</td><td><span class="badge badge-green">好评</span></td><td><span class="badge badge-green">已通过</span></td><td>2024-12-14</td><td><button class="action-btn act-del">删除</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Questions List -->
+      <div class="admin-page" id="admin-questions">
+        <div class="admin-hd"><div class="admin-title">📝 题目管理</div><button class="btn btn-red btn-sm" onclick="refreshQuestionsList()">🔄 刷新列表</button></div>
+        <div class="card" style="padding:0;">
+          <div class="table-wrap">
+            <table id="questionsTable">
+              <thead><tr><th>ID</th><th>题型</th><th>题目内容</th><th>正确答案</th><th>分值</th><th>分类</th><th>操作</th></tr></thead>
+              <tbody id="questionsTableBody">
+                <tr><td colspan="7" style="text-align:center;padding:40px;color:var(--text3);">正在加载题目列表...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add Question -->
+      <div class="admin-page" id="admin-question-add">
+        <div class="admin-hd"><div class="admin-title">➕ 添加题目</div></div>
+        <div class="card" style="padding:24px;">
+          <div id="questionFormContainer">
+            <div class="form-group">
+              <label class="form-label">题目类型<span style="color:var(--red);"> *</span></label>
+              <select class="form-select" id="questionType" onchange="updateQuestionForm()">
+                <option value="">请选择题型</option>
+                <option value="单选">单选题</option>
+                <option value="多选">多选题</option>
+                <option value="判断">判断题</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">题干<span style="color:var(--red);"> *</span></label>
+              <textarea class="form-input" id="questionTitle" rows="3" placeholder="请输入题目内容"></textarea>
+            </div>
+
+            <div id="optionsContainer" style="display:none;">
+              <div class="form-group">
+                <label class="form-label">选项A<span style="color:var(--red);"> *</span></label>
+                <input class="form-input" id="optionA" placeholder="请输入选项A内容">
+              </div>
+              <div class="form-group">
+                <label class="form-label">选项B<span style="color:var(--red);"> *</span></label>
+                <input class="form-input" id="optionB" placeholder="请输入选项B内容">
+              </div>
+              <div id="optionCGroup" style="display:none;">
+                <div class="form-group">
+                  <label class="form-label">选项C</label>
+                  <input class="form-input" id="optionC" placeholder="请输入选项C内容（可选）">
+                </div>
+              </div>
+              <div id="optionDGroup" style="display:none;">
+                <div class="form-group">
+                  <label class="form-label">选项D</label>
+                  <input class="form-input" id="optionD" placeholder="请输入选项D内容（可选）">
+                </div>
+              </div>
+            </div>
+
+            <div id="answerContainer">
+              <div class="form-group">
+                <label class="form-label">正确答案<span style="color:var(--red);"> *</span></label>
+                <div id="answerOptions"></div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">分值</label>
+              <input class="form-input" id="questionScore" type="number" min="1" max="10" value="2">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">分类</label>
+              <input class="form-input" id="questionCategory" value="党建知识">
+            </div>
+
+            <div style="display:flex;gap:12px;margin-top:32px;">
+              <button class="btn btn-red" style="flex:1;" onclick="submitQuestion()">提交题目</button>
+              <button class="btn btn-outline" style="flex:1;" onclick="resetQuestionForm()">重置表单</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Edit Question Modal -->
+      <div class="modal-overlay" id="editQuestionModal" style="display:none;">
+        <div class="modal" style="max-width:600px;max-height:90vh;overflow-y:auto;">
+          <div class="modal-header">
+            <h3>✏️ 编辑题目</h3>
+            <button class="modal-close" onclick="closeEditQuestionModal()">×</button>
+          </div>
+          <div class="modal-body">
+            <div id="editQuestionFormContainer">
+              <div class="form-group">
+                <label class="form-label">题目类型<span style="color:var(--red);"> *</span></label>
+                <select class="form-select" id="editQuestionType" onchange="updateEditQuestionForm()">
+                  <option value="">请选择题型</option>
+                  <option value="单选">单选题</option>
+                  <option value="多选">多选题</option>
+                  <option value="判断">判断题</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">题干<span style="color:var(--red);"> *</span></label>
+                <textarea class="form-input" id="editQuestionTitle" rows="3" placeholder="请输入题目内容"></textarea>
+              </div>
+
+              <div id="editOptionsContainer" style="display:none;">
+                <div class="form-group">
+                  <label class="form-label">选项A<span style="color:var(--red);"> *</span></label>
+                  <input class="form-input" id="editOptionA" placeholder="请输入选项A内容">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">选项B<span style="color:var(--red);"> *</span></label>
+                  <input class="form-input" id="editOptionB" placeholder="请输入选项B内容">
+                </div>
+                <div id="editOptionCGroup" style="display:none;">
+                  <div class="form-group">
+                    <label class="form-label">选项C</label>
+                    <input class="form-input" id="editOptionC" placeholder="请输入选项C内容（可选）">
+                  </div>
+                </div>
+                <div id="editOptionDGroup" style="display:none;">
+                  <div class="form-group">
+                    <label class="form-label">选项D</label>
+                    <input class="form-input" id="editOptionD" placeholder="请输入选项D内容（可选）">
+                  </div>
+                </div>
+              </div>
+
+              <div id="editAnswerContainer">
+                <div class="form-group">
+                  <label class="form-label">正确答案<span style="color:var(--red);"> *</span></label>
+                  <div id="editAnswerOptions"></div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">分值</label>
+                <input class="form-input" id="editQuestionScore" type="number" min="1" max="10" value="2">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">分类</label>
+                <input class="form-input" id="editQuestionCategory" value="党建知识">
+              </div>
+
+              <input type="hidden" id="editQuestionId">
+
+              <div style="display:flex;gap:12px;margin-top:32px;">
+                <button class="btn btn-red" style="flex:1;" onclick="saveEditedQuestion()">保存修改</button>
+                <button class="btn btn-outline" style="flex:1;" onclick="closeEditQuestionModal()">取消</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="common-enhanced.js"></script>
+
+  <script>
+    // 题库管理相关函数
+    let questionsData = [];
+
+    // 刷新题目列表
+    async function refreshQuestionsList() {
+      await loadQuestionsList();
+    }
+
+    // 加载题目列表
+    async function loadQuestionsList() {
+      const tbody = document.getElementById('questionsTableBody');
+      if (!tbody) return;
+
+      tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:40px;color:var(--text3);">正在加载题目列表...</td></tr>';
+
+      try {
+        // 使用已有的getQuestions函数
+        const questions = await getQuestions();
+        questionsData = questions;
+
+        if (questions.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:40px;color:var(--text3);">暂无题目数据</td></tr>';
+          return;
+        }
+
+        let html = '';
+        questions.forEach((q, index) => {
+          // 简略显示题目内容
+          const shortTitle = q.title.length > 50 ? q.title.substring(0, 47) + '...' : q.title;
+
+          html += `
+            <tr>
+              <td>${q.id}</td>
+              <td><span class="badge ${q.type === '单选' ? 'badge-blue' : q.type === '多选' ? 'badge-gold' : 'badge-green'}">${q.type}</span></td>
+              <td title="${q.title}">${shortTitle}</td>
+              <td><code style="background:var(--bg2);padding:2px 6px;border-radius:4px;">${q.answer}</code></td>
+              <td>${q.score || 2}</td>
+              <td>${q.category || '党建知识'}</td>
+              <td>
+                <button class="action-btn act-edit" onclick="editQuestion(${q.id})">编辑</button>
+                <button class="action-btn act-del" onclick="deleteQuestionConfirm(${q.id})">删除</button>
+              </td>
+            </tr>
+          `;
+        });
+
+        tbody.innerHTML = html;
+        showToast(`✅ 加载了 ${questions.length} 道题目`);
+      } catch (error) {
+        console.error('加载题目列表失败:', error);
+        tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:40px;color:var(--red);">加载失败，请检查API连接</td></tr>';
+      }
+    }
+
+    // 删除题目确认
+    async function deleteQuestionConfirm(questionId) {
+      if (!confirm(`确定要删除题目 #${questionId} 吗？此操作不可恢复！`)) {
+        return;
+      }
+
+      try {
+        const result = await deleteQuestion(questionId);
+        if (result.success) {
+          await loadQuestionsList();
+        }
+      } catch (error) {
+        console.error('删除题目失败:', error);
+        showToast('❌ 删除题目失败');
+      }
+    }
+
+    // 编辑题目
+    async function editQuestion(questionId) {
+      try {
+        // 获取题目详情
+        const result = await getQuestionDetail(questionId);
+        if (!result.success || !result.question) {
+          showToast('❌ 获取题目信息失败');
+          return;
+        }
+
+        const question = result.question;
+
+        // 设置隐藏的题目ID
+        document.getElementById('editQuestionId').value = questionId;
+
+        // 设置题型并更新表单
+        document.getElementById('editQuestionType').value = question.type;
+        updateEditQuestionForm();
+
+        // 设置其他字段
+        document.getElementById('editQuestionTitle').value = question.title || '';
+        document.getElementById('editQuestionScore').value = question.score || 2;
+        document.getElementById('editQuestionCategory').value = question.category || '党建知识';
+
+        // 设置选项
+        if (question.type === '单选' || question.type === '多选') {
+          document.getElementById('editOptionA').value = question.option_a || '';
+          document.getElementById('editOptionB').value = question.option_b || '';
+          document.getElementById('editOptionC').value = question.option_c || '';
+          document.getElementById('editOptionD').value = question.option_d || '';
+        } else if (question.type === '判断') {
+          document.getElementById('editOptionA').value = '对';
+          document.getElementById('editOptionB').value = '错';
+        }
+
+        // 设置正确答案
+        setTimeout(() => {
+          const answer = question.answer || '';
+          if (question.type === '单选' || question.type === '判断') {
+            const answerInput = document.querySelector(`#editAnswerOptions input[value="${answer}"]`);
+            if (answerInput) {
+              answerInput.checked = true;
+            }
+          } else if (question.type === '多选') {
+            const answers = answer.split(',');
+            answers.forEach(ans => {
+              const answerInput = document.querySelector(`#editAnswerOptions input[value="${ans.trim()}"]`);
+              if (answerInput) {
+                answerInput.checked = true;
+              }
+            });
+          }
+        }, 100);
+
+        // 显示模态框
+        document.getElementById('editQuestionModal').style.display = 'flex';
+      } catch (error) {
+        console.error('加载题目失败:', error);
+        showToast('❌ 加载题目信息失败');
+      }
+    }
+
+    // 根据题型更新表单
+    function updateQuestionForm() {
+      const type = document.getElementById('questionType').value;
+      const optionsContainer = document.getElementById('optionsContainer');
+      const optionCGroup = document.getElementById('optionCGroup');
+      const optionDGroup = document.getElementById('optionDGroup');
+      const answerOptions = document.getElementById('answerOptions');
+
+      // 清空之前的答案选项
+      answerOptions.innerHTML = '';
+
+      if (!type) {
+        optionsContainer.style.display = 'none';
+        return;
+      }
+
+      if (type === '单选' || type === '多选') {
+        optionsContainer.style.display = 'block';
+        optionCGroup.style.display = 'block';
+        optionDGroup.style.display = 'block';
+
+        // 创建答案选项
+        const options = ['A', 'B', 'C', 'D'];
+        if (type === '单选') {
+          // 单选题：单选按钮
+          options.forEach(opt => {
+            const id = `answer${opt}`;
+            answerOptions.innerHTML += `
+              <div style="display:inline-block;margin-right:16px;">
+                <input type="radio" id="${id}" name="answer" value="${opt}">
+                <label for="${id}" style="margin-left:4px;">选项${opt}</label>
+              </div>
+            `;
+          });
+        } else {
+          // 多选题：复选框
+          options.forEach(opt => {
+            const id = `answer${opt}`;
+            answerOptions.innerHTML += `
+              <div style="display:inline-block;margin-right:16px;">
+                <input type="checkbox" id="${id}" name="answer" value="${opt}">
+                <label for="${id}" style="margin-left:4px;">选项${opt}</label>
+              </div>
+            `;
+          });
+        }
+      } else if (type === '判断') {
+        optionsContainer.style.display = 'block';
+        optionCGroup.style.display = 'none';
+        optionDGroup.style.display = 'none';
+
+        // 判断题：对/错
+        answerOptions.innerHTML = `
+          <div style="display:inline-block;margin-right:16px;">
+            <input type="radio" id="answerTrue" name="answer" value="对">
+            <label for="answerTrue" style="margin-left:4px;">对</label>
+          </div>
+          <div style="display:inline-block;">
+            <input type="radio" id="answerFalse" name="answer" value="错">
+            <label for="answerFalse" style="margin-left:4px;">错</label>
+          </div>
+        `;
+      }
+    }
+
+    // 提交题目
+    async function submitQuestion() {
+      // 获取表单数据
+      const type = document.getElementById('questionType').value;
+      const title = document.getElementById('questionTitle').value.trim();
+      const score = parseInt(document.getElementById('questionScore').value) || 2;
+      const category = document.getElementById('questionCategory').value.trim() || '党建知识';
+
+      // 验证必填字段
+      if (!type || !title) {
+        showToast('❌ 请填写题目类型和题干');
+        return;
+      }
+
+      // 获取答案
+      let answer = '';
+      if (type === '单选' || type === '判断') {
+        const selected = document.querySelector('input[name="answer"]:checked');
+        if (!selected) {
+          showToast('❌ 请选择正确答案');
+          return;
+        }
+        answer = selected.value;
+      } else if (type === '多选') {
+        const selected = Array.from(document.querySelectorAll('input[name="answer"]:checked'))
+          .map(cb => cb.value)
+          .sort()
+          .join(',');
+        if (selected.length === 0) {
+          showToast('❌ 请至少选择一个正确答案');
+          return;
+        }
+        answer = selected;
+      }
+
+      // 获取选项（单选/多选题）
+      let option_a = '', option_b = '', option_c = '', option_d = '';
+      if (type === '单选' || type === '多选') {
+        option_a = document.getElementById('optionA').value.trim();
+        option_b = document.getElementById('optionB').value.trim();
+        option_c = document.getElementById('optionC').value.trim();
+        option_d = document.getElementById('optionD').value.trim();
+
+        if (!option_a || !option_b) {
+          showToast('❌ 选项A和B是必填项');
+          return;
+        }
+      } else if (type === '判断') {
+        option_a = '对';
+        option_b = '错';
+      }
+
+      // 构建题目数据
+      const questionData = {
+        type: type,
+        title: title,
+        answer: answer,
+        score: score,
+        category: category
+      };
+
+      // 添加选项
+      if (option_a) questionData.option_a = option_a;
+      if (option_b) questionData.option_b = option_b;
+      if (option_c) questionData.option_c = option_c;
+      if (option_d) questionData.option_d = option_d;
+
+      // 显示加载状态
+      const submitBtn = document.querySelector('#questionFormContainer button[onclick="submitQuestion()"]');
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = '提交中...';
+      submitBtn.disabled = true;
+
+      try {
+        // 调用API
+        const result = await addQuestion(questionData);
+
+        if (result.success) {
+          showToast(`✅ 题目添加成功！ID: ${result.insertId}`);
+          resetQuestionForm();
+
+          // 如果是管理员，可以自动跳转到题目列表
+          if (isAdmin()) {
+            setTimeout(() => {
+              switchAdminPage('questions');
+              loadQuestionsList();
+            }, 1000);
+          }
+        } else {
+          showToast(`❌ 添加失败: ${result.message || '未知错误'}`);
+        }
+      } catch (error) {
+        console.error('提交题目失败:', error);
+        showToast('❌ 提交题目失败，请检查网络连接');
+      } finally {
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+      }
+    }
+
+    // 重置表单
+    function resetQuestionForm() {
+      document.getElementById('questionType').value = '';
+      document.getElementById('questionTitle').value = '';
+      document.getElementById('optionA').value = '';
+      document.getElementById('optionB').value = '';
+      document.getElementById('optionC').value = '';
+      document.getElementById('optionD').value = '';
+      document.getElementById('questionScore').value = '2';
+      document.getElementById('questionCategory').value = '党建知识';
+
+      const answerOptions = document.getElementById('answerOptions');
+      answerOptions.innerHTML = '';
+
+      const optionsContainer = document.getElementById('optionsContainer');
+      optionsContainer.style.display = 'none';
+
+      showToast('表单已重置');
+    }
+
+    // 页面切换时加载题目列表
+    document.addEventListener('DOMContentLoaded', function() {
+      // 监听页面切换
+      const originalSwitchAdminPage = window.switchAdminPage;
+      window.switchAdminPage = function(page, el) {
+        originalSwitchAdminPage(page, el);
+
+        // 如果切换到题目列表页面，加载数据
+        if (page === 'questions') {
+          setTimeout(loadQuestionsList, 100);
+        }
+      };
+
+      // 如果是题目列表页面，直接加载
+      if (document.getElementById('admin-questions')?.classList.contains('active')) {
+        setTimeout(loadQuestionsList, 500);
+      }
+    });
+  </script>
+</body>
+</html>

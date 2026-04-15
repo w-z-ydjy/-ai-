@@ -1,0 +1,32 @@
+{
+  "name": "party-quiz-api-enhanced",
+  "version": "2.0.0",
+  "description": "人工智能协会党建平台 - 增强版API服务（含用户认证、答题记录）",
+  "main": "server-enhanced.js",
+  "scripts": {
+    "start": "node server-enhanced.js",
+    "dev": "nodemon server-enhanced.js",
+    "init-db": "mysql -u root -p < ../party_question_bank_extended.sql",
+    "reset-db": "mysql -u root -p < ../party_question_bank.sql && mysql -u root -p < ../party_question_bank_extended.sql"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql2": "^3.6.5",
+    "cors": "^2.8.5",
+    "jsonwebtoken": "^9.0.2",
+    "bcryptjs": "^2.4.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "keywords": [
+    "党建",
+    "题库",
+    "API",
+    "用户认证",
+    "答题系统"
+  ]
+}

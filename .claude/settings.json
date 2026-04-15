@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s -X POST http://localhost:3000/api/auth/login -H \"Content-Type: application/json\" -d '{\"username\":\"admin\",\"password\":\"123456\"}')",
+      "Bash(curl -s -H \"Authorization: Bearer eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiYWRtaW4iLCJ0aW1lc3RhbXAiOjE3NzYyNDYzNzI1NDB9\" \"http://localhost:3000/api/quiz/records?limit=5\")"
+    ]
+  }
+}

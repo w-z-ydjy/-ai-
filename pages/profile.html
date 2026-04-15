@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>个人中心 - 人工智能协会 · 党建文化平台</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Toast -->
+  <div id="toast"></div>
+
+  <!-- Top Navigation -->
+  <nav id="topnav">
+    <div class="nav-wrap">
+      <div class="nav-logo" onclick="window.location.href='index.html'">
+        <div class="nav-logo-icon">★</div>
+        <div><div class="nav-logo-text">人工智能协会 · 党建文化</div></div>
+      </div>
+      <div class="nav-links">
+        <div class="nav-link" onclick="window.location.href='index.html'">首 页</div>
+        <div class="nav-link" onclick="window.location.href='party.html'">党建引领专区</div>
+        <div class="nav-link" onclick="window.location.href='showcase.html'">社团风采</div>
+        <div class="nav-link" onclick="window.location.href='activities.html'">党建活动</div>
+        <div class="nav-link" onclick="window.location.href='study.html'">学习中心</div>
+        <div class="nav-link" onclick="window.location.href='chat.html'">AI智能问答</div>
+        <div class="nav-link" onclick="window.location.href='message.html'">留言板</div>
+      </div>
+      <div class="nav-right" id="navRight">
+        <button class="nav-btn" onclick="toggleTheme()">🌙 深色</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Profile Hero -->
+  <div class="profile-hero">
+    <div class="container">
+      <div style="display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
+        <div class="profile-avatar">👤</div>
+        <div class="profile-info">
+          <div class="profile-name" id="profileName">加载中...</div>
+          <div class="profile-role" id="profileRole">正在加载用户信息...</div>
+          <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;">
+            <span class="badge" style="background:rgba(255,255,255,0.15);color:#fff;">🏆 2,480 积分</span>
+            <span class="badge" style="background:rgba(255,255,255,0.15);color:#fff;">📚 学习达人</span>
+          </div>
+        </div>
+        <div style="margin-left:auto;display:flex;gap:12px;">
+          <button class="btn btn-outline btn-sm" style="color:#fff;border-color:rgba(255,255,255,0.3);" onclick="showToast('编辑功能开发中...')">编辑资料</button>
+          <button class="btn btn-outline btn-sm" style="color:#fff;border-color:rgba(255,255,255,0.3);" onclick="doLogout()">退出登录</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Profile Tabs -->
+  <div class="profile-tabs">
+    <div class="profile-tab active" onclick="switchProfileTab('signup',this)">报名记录</div>
+    <div class="profile-tab" onclick="switchProfileTab('study',this)">学习记录</div>
+    <div class="profile-tab" onclick="switchProfileTab('collect',this)">我的收藏</div>
+    <div class="profile-tab" onclick="switchProfileTab('achievement',this)">个人成就</div>
+    <div class="profile-tab" onclick="switchProfileTab('download',this)">资料下载</div>
+    <div class="profile-tab" onclick="switchProfileTab('settings',this)">设置</div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <!-- Signup Records -->
+      <div id="ptab-signup">
+        <div class="card" style="padding:0;">
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>活动名称</th><th>活动时间</th><th>报名状态</th><th>签到状态</th><th>操作</th></tr></thead>
+              <tbody>
+                <tr><td>2024年第四季度主题党日活动</td><td>2024-12-20</td><td><span class="badge badge-green">已报名</span></td><td><span class="badge badge-gray">待签到</span></td><td><button class="action-btn act-edit">签到</button></td></tr>
+                <tr><td>AI技术与党建融合研讨会</td><td>2024-12-18</td><td><span class="badge badge-green">已报名</span></td><td><span class="badge badge-gray">待签到</span></td><td><button class="action-btn act-edit">签到</button></td></tr>
+                <tr><td>党史学习教育专题讲座</td><td>2024-12-10</td><td><span class="badge badge-green">已报名</span></td><td><span class="badge badge-green">已签到</span></td><td><button class="action-btn" style="background:var(--bg);color:var(--text3);">已完成</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Study Records -->
+      <div id="ptab-study" style="display:none;">
+        <div class="card" style="padding:0;">
+          <div style="padding:20px 24px;background:linear-gradient(90deg,var(--blue-dark),var(--blue));color:#fff;display:flex;align-items:center;gap:12px;">
+            <span style="font-size:24px;">📚</span>
+            <div><div style="font-weight:700;">我的学习记录</div><div style="font-size:12px;opacity:0.7;">答题记录 · 自动保存</div></div>
+            <div style="margin-left:auto;">
+              <button class="btn btn-outline btn-sm" style="color:#fff;border-color:rgba(255,255,255,0.3);" onclick="loadStudyRecords()" title="刷新数据">🔄</button>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>测验内容</th><th>类型</th><th>成绩/进度</th><th>获得积分</th><th>答题时间</th></tr></thead>
+              <tbody>
+                <tr><td colspan="5" style="text-align:center;padding:40px;">
+                  <div style="font-size:32px;margin-bottom:12px;">⏳</div>
+                  <div>正在加载学习记录...</div>
+                </td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Collections -->
+      <div id="ptab-collect" style="display:none;">
+        <div id="emptyCollect" style="text-align:center;padding:60px 20px;">
+          <div style="font-size:48px;margin-bottom:16px;">🌟</div>
+          <h3 style="font-size:18px;margin-bottom:8px;">暂无收藏</h3>
+          <p style="color:var(--text2);">您还没有收藏任何内容</p>
+        </div>
+      </div>
+
+      <!-- Achievement -->
+      <div id="ptab-achievement" style="display:none;">
+        <div class="card" style="padding:36px;margin-bottom:24px;">
+          <h3 style="font-size:18px;font-weight:700;margin-bottom:32px;">🏆 我的成就</h3>
+          <div class="stats-row">
+            <div class="stats-mini"><div class="stats-mini-num" style="color:var(--red);">2,480</div><div class="stats-mini-label">总积分</div></div>
+            <div class="stats-mini"><div class="stats-mini-num" style="color:var(--blue);">12</div><div class="stats-mini-label">完成课程</div></div>
+            <div class="stats-mini"><div class="stats-mini-num" style="color:var(--gold);">8</div><div class="stats-mini-label">获得徽章</div></div>
+            <div class="stats-mini"><div class="stats-mini-num" style="color:#00b45a;">5</div><div class="stats-mini-label">参加活动</div></div>
+          </div>
+        </div>
+        <div class="card" style="padding:36px;">
+          <h3 style="font-size:18px;font-weight:700;margin-bottom:24px;">🏅 我的徽章</h3>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:20px;">
+            <div style="background:linear-gradient(135deg,#fff3cd,#ffeaa7);border-radius:12px;padding:24px;text-align:center;border:1px solid #ffeaa7;">
+              <div style="font-size:48px;margin-bottom:12px;">📚</div>
+              <div style="font-weight:700;margin-bottom:4px;">学习达人</div>
+              <div style="font-size:12px;color:var(--text2);">完成10门课程</div>
+            </div>
+            <div style="background:linear-gradient(135deg,#d4edda,#c3e6cb);border-radius:12px;padding:24px;text-align:center;border:1px solid #c3e6cb;">
+              <div style="font-size:48px;margin-bottom:12px;">🎯</div>
+              <div style="font-weight:700;margin-bottom:4px;">答题能手</div>
+              <div style="font-size:12px;color:var(--text2);">测验满分3次</div>
+            </div>
+            <div style="background:linear-gradient(135deg,#d1ecf1,#bee5eb);border-radius:12px;padding:24px;text-align:center;border:1px solid #bee5eb;">
+              <div style="font-size:48px;margin-bottom:12px;">🎉</div>
+              <div style="font-weight:700;margin-bottom:4px;">活动积极分子</div>
+              <div style="font-size:12px;color:var(--text2);">参加5次活动</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Downloads -->
+      <div id="ptab-download" style="display:none;">
+        <div class="card" style="padding:0;">
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>文件名称</th><th>类型</th><th>下载时间</th><th>操作</th></tr></thead>
+              <tbody>
+                <tr><td>中国共产党章程全文</td><td><span class="badge badge-blue">📄 文档</span></td><td>2024-12-10</td><td><button class="action-btn act-edit" onclick="showToast('开始下载...')">重新下载</button></td></tr>
+                <tr><td>入党积极分子培训教材</td><td><span class="badge badge-blue">📄 文档</span></td><td>2024-11-25</td><td><button class="action-btn act-edit" onclick="showToast('开始下载...')">重新下载</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Settings -->
+      <div id="ptab-settings" style="display:none;">
+        <div class="card" style="padding:36px;">
+          <h3 style="font-size:18px;font-weight:700;margin-bottom:24px;">⚙️ 个性化设置</h3>
+          
+          <div style="margin-bottom:32px;">
+            <h4 style="font-size:16px;font-weight:600;margin-bottom:16px;">🔤 字体大小</h4>
+            <div style="display:flex;gap:12px;align-items:center;">
+              <button class="btn btn-outline-blue btn-sm" onclick="changeFontSize('decrease')">A- 减小</button>
+              <button class="btn btn-outline-blue btn-sm" onclick="changeFontSize('reset')">A 默认</button>
+              <button class="btn btn-outline-blue btn-sm" onclick="changeFontSize('increase')">A+ 增大</button>
+              <span style="font-size:14px;color:var(--text3);margin-left:12px;">当前大小：<span id="currentFontSize">16</span>px</span>
+            </div>
+          </div>
+          
+          <div style="margin-bottom:32px;">
+            <h4 style="font-size:16px;font-weight:600;margin-bottom:16px;">🎨 主题设置</h4>
+            <div style="display:flex;gap:12px;">
+              <button class="btn btn-outline-blue btn-sm" onclick="setTheme('light')">☀️ 浅色主题</button>
+              <button class="btn btn-outline-blue btn-sm" onclick="setTheme('dark')">🌙 深色主题</button>
+            </div>
+          </div>
+          
+          <div>
+            <h4 style="font-size:16px;font-weight:600;margin-bottom:16px;">💾 数据管理</h4>
+            <div style="display:flex;gap:12px;flex-wrap:wrap;">
+              <button class="btn btn-outline-blue" onclick="showToast('导出功能开发中...')">📤 导出数据</button>
+              <button class="btn btn-outline-blue" onclick="showToast('导入功能开发中...')">📥 导入数据</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><div class="footer-brand-title">人工智能协会</div><div class="footer-brand-desc">以党建为引领，以智汇为纽带，以AI为翼。</div></div>
+        <div><div class="footer-col-title">快速导航</div><a href="index.html" class="footer-link">首页</a><a href="party.html" class="footer-link">党建引领</a></div>
+        <div><div class="footer-col-title">功能模块</div><a href="study.html" class="footer-link">学习中心</a><a href="chat.html" class="footer-link">AI问答</a></div>
+      </div>
+      <div class="footer-bottom"><div class="footer-copy">© 2024 <span>人工智能协会</span> · 党建文化平台</div></div>
+    </div>
+  </footer>
+
+  <script src="common-enhanced.js"></script>
+  <script>
+    function setTheme(theme) {
+      if (theme === 'light') {
+        document.body.classList.remove('dark-theme');
+        localStorage.setItem('theme', 'light');
+        showToast('已切换到浅色主题');
+      } else if (theme === 'dark') {
+        document.body.classList.add('dark-theme');
+        localStorage.setItem('theme', 'dark');
+        showToast('已切换到深色主题');
+      }
+    }
+
+    function doLogout() {
+      if (confirm('确定要退出登录吗？')) {
+        // 使用common-enhanced.js中的doLogout函数
+        if (typeof window.doLogout === 'function') {
+          window.doLogout();
+        } else {
+          // 备用方案
+          localStorage.removeItem('authToken');
+          localStorage.removeItem('userLoggedIn');
+          localStorage.removeItem('userName');
+          localStorage.removeItem('userRole');
+          localStorage.removeItem('userId');
+          localStorage.removeItem('userEmail');
+          localStorage.removeItem('userPhone');
+          localStorage.removeItem('userAvatar');
+          showToast('👋 已成功退出登录');
+          setTimeout(() => { window.location.href = 'index.html'; }, 800);
+        }
+      }
+    }
+
+    function loadProfile() {
+      const userName = localStorage.getItem('userName');
+      const userRole = localStorage.getItem('userRole');
+      const userEmail = localStorage.getItem('userEmail');
+      const userPhone = localStorage.getItem('userPhone');
+
+      if (userName) {
+        document.getElementById('profileName').textContent = userName;
+
+        // 根据角色显示不同的描述
+        let roleText = '';
+        if (userRole === 'admin') {
+          roleText = '管理员';
+        } else if (userRole === 'user') {
+          roleText = '普通用户';
+        } else if (userRole === 'guest') {
+          roleText = '访客用户';
+        } else {
+          roleText = '用户';
+        }
+
+        // 如果有邮箱或电话，显示在描述中
+        let contactInfo = '';
+        if (userEmail) {
+          contactInfo += ` · ${userEmail}`;
+        }
+        if (userPhone) {
+          contactInfo += ` · ${userPhone}`;
+        }
+
+        document.getElementById('profileRole').textContent = `${roleText}${contactInfo}`;
+      } else {
+        // 如果没有用户信息，显示默认或重定向到登录页
+        document.getElementById('profileName').textContent = '未登录用户';
+        document.getElementById('profileRole').textContent = '请先登录查看个人信息';
+
+        // 如果不是在登录页面，3秒后重定向到登录页
+        if (!window.location.href.includes('login.html')) {
+          setTimeout(() => {
+            showToast('请先登录');
+            window.location.href = 'login.html';
+          }, 2000);
+        }
+      }
+    }
+
+    // 页面加载时初始化
+    document.addEventListener('DOMContentLoaded', function() {
+      loadProfile();
+
+      // 检查认证状态
+      if (typeof checkAuthStatus === 'function') {
+        checkAuthStatus();
+      }
+    });
+
+    // 加载个人学习记录
+    async function loadStudyRecords() {
+      const studyContainer = document.getElementById('ptab-study');
+      if (!studyContainer || studyContainer.style.display === 'none') return;
+
+      try {
+        // 显示加载状态
+        const tbody = studyContainer.querySelector('tbody');
+        if (tbody) tbody.innerHTML = `
+          <tr><td colspan="5" style="text-align:center;padding:40px;">
+            <div style="font-size:32px;margin-bottom:12px;">⏳</div>
+            <div>正在加载学习记录...</div>
+          </td></tr>`;
+
+        // 获取答题记录数据
+        const isLoggedIn = localStorage.getItem('userLoggedIn') === 'true';
+        if (!isLoggedIn) {
+          if (tbody) tbody.innerHTML = `
+            <tr><td colspan="5" style="text-align:center;padding:40px;">
+              <div style="font-size:32px;margin-bottom:12px;">🔒</div>
+              <div>请先登录查看学习记录</div>
+            </td></tr>`;
+          return;
+        }
+
+        const recordsData = await getUserQuizRecords(20, 0);
+        const records = recordsData.records || [];
+
+        // 渲染数据
+        if (records.length > 0) {
+          const rows = records.map(record => {
+            const date = new Date(record.created_at).toLocaleDateString();
+            const total = record.total_questions || 0;
+            const correct = record.correct_answers || 0;
+            const score = record.score || 0;
+            const timeSpent = record.time_spent ? `${Math.floor(record.time_spent / 60)}分${record.time_spent % 60}秒` : '-';
+            const accuracy = total > 0 ? Math.round((correct / total) * 100) : 0;
+            const startTime = record.start_time ? new Date(record.start_time).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) : '';
+
+            return `
+              <tr>
+                <td>党建知识测验 (${total}题)</td>
+                <td><span class="badge badge-gold">答题</span></td>
+                <td>${correct}/${total} (${accuracy}%)<br><small>耗时: ${timeSpent}</small></td>
+                <td style="color:var(--red);font-weight:700;">${score}</td>
+                <td>${date} ${startTime}</td>
+              </tr>
+            `;
+          }).join('');
+
+          if (tbody) tbody.innerHTML = rows;
+        } else {
+          if (tbody) tbody.innerHTML = `
+            <tr><td colspan="5" style="text-align:center;padding:40px;">
+              <div style="font-size:32px;margin-bottom:12px;">📝</div>
+              <div>暂无学习记录</div>
+            </td></tr>`;
+        }
+      } catch (error) {
+        console.error('加载学习记录失败:', error);
+        const tbody = studyContainer.querySelector('tbody');
+        if (tbody) tbody.innerHTML = `
+          <tr><td colspan="5" style="text-align:center;padding:40px;">
+            <div style="font-size:32px;margin-bottom:12px;">❌</div>
+            <div>加载失败: ${error.message || '未知错误'}</div>
+          </td></tr>`;
+      }
+    }
+
+    // 修改标签切换函数以加载数据
+    const originalSwitchProfileTab = window.switchProfileTab;
+    window.switchProfileTab = function(tab, el) {
+      // 调用原始函数
+      if (originalSwitchProfileTab) originalSwitchProfileTab(tab, el);
+
+      // 根据标签页加载数据
+      setTimeout(() => {
+        if (tab === 'study') {
+          loadStudyRecords();
+        }
+      }, 100);
+    };
+
+    // 页面加载时检查当前标签页并加载数据
+    document.addEventListener('DOMContentLoaded', function() {
+      // 检查当前是否在学习记录标签页
+      const studyTab = document.getElementById('ptab-study');
+      if (studyTab && studyTab.style.display !== 'none') {
+        loadStudyRecords();
+      }
+    });
+  </script>
+</body>
+</html>

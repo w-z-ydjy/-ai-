@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>党建活动 - 人工智能协会 · 党建文化平台</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Page loader -->
+  <div id="pageLoader" class="page-loader">
+    <div class="loader-content">
+      <div class="loader-spinner"></div>
+      <div class="loader-text">人工智能协会</div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast"></div>
+
+  <!-- Top Navigation -->
+  <nav id="topnav">
+    <div class="nav-wrap">
+      <div class="nav-logo" onclick="window.location.href='index.html'">
+        <div class="nav-logo-icon">★</div>
+        <div><div class="nav-logo-text">人工智能协会 · 党建文化</div></div>
+      </div>
+      <div class="nav-links">
+        <div class="nav-link" onclick="window.location.href='index.html'">首 页</div>
+        <div class="nav-link" onclick="window.location.href='party.html'">党建引领专区</div>
+        <div class="nav-link" onclick="window.location.href='showcase.html'">社团风采</div>
+        <div class="nav-link active" onclick="window.location.href='activities.html'">党建活动</div>
+        <div class="nav-link" onclick="window.location.href='study.html'">学习中心</div>
+        <div class="nav-link" onclick="window.location.href='chat.html'">AI智能问答</div>
+        <div class="nav-link" onclick="window.location.href='message.html'">留言板</div>
+      </div>
+      <div class="nav-right" id="navRight">
+        <button class="nav-btn" onclick="toggleTheme()">🌙 深色</button>
+        <button class="nav-btn nav-btn-login" onclick="window.location.href='login.html'">登 录</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Banner -->
+  <div style="background:linear-gradient(120deg,var(--red-dark),var(--red));padding:40px 0;color:#fff;">
+    <div class="container">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+        <div>
+          <div class="sec-tag" style="color:rgba(255,255,255,0.7);">ACTIVITIES</div>
+          <h1 style="font-size:32px;font-weight:900;margin-top:6px;">党建活动管理</h1>
+        </div>
+        <div style="display:flex;gap:10px;">
+          <select class="form-select" style="width:auto;background:rgba(255,255,255,0.15);color:#fff;border-color:rgba(255,255,255,0.3);">
+            <option>全部活动</option>
+            <option>报名中</option>
+            <option>进行中</option>
+            <option>已结束</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <div class="grid-3">
+        <!-- Activity 1 -->
+        <div class="card act-card">
+          <div class="act-card-img" style="background:linear-gradient(135deg,#4a0000,#c90000);">🚩</div>
+          <div class="act-card-body">
+            <div style="margin-bottom:8px;display:flex;gap:6px;flex-wrap:wrap;"><span class="badge badge-red">党日活动</span><span class="badge badge-green">报名中</span></div>
+            <div class="act-card-title">2024年第四季度主题党日活动</div>
+            <div class="act-card-meta"><span>📅 2024-12-20 14:00</span><span>📍 图书馆报告厅</span></div>
+            <div class="act-card-meta" style="margin-top:6px;"><span>👥 已报名 28/50</span></div>
+            <a href="activity-detail.html" class="btn btn-red btn-sm" style="margin-top:14px;display:inline-block;">立即报名</a>
+          </div>
+        </div>
+
+        <!-- Activity 2 -->
+        <div class="card act-card">
+          <div class="act-card-img" style="background:linear-gradient(135deg,#003a99,#165DFF);">🤖</div>
+          <div class="act-card-body">
+            <div style="margin-bottom:8px;display:flex;gap:6px;flex-wrap:wrap;"><span class="badge badge-blue">AI融合</span><span class="badge badge-green">报名中</span></div>
+            <div class="act-card-title">AI技术与党建融合研讨会</div>
+            <div class="act-card-meta"><span>📅 2024-12-18 10:00</span><span>📍 实验楼202</span></div>
+            <div class="act-card-meta" style="margin-top:6px;"><span>👥 已报名 15/30</span></div>
+            <a href="activity-detail.html" class="btn btn-blue btn-sm" style="margin-top:14px;display:inline-block;">立即报名</a>
+          </div>
+        </div>
+
+        <!-- Activity 3 -->
+        <div class="card act-card">
+          <div class="act-card-img" style="background:linear-gradient(135deg,#5a3000,#c9a84c);">📖</div>
+          <div class="act-card-body">
+            <div style="margin-bottom:8px;display:flex;gap:6px;flex-wrap:wrap;"><span class="badge badge-gold">学习教育</span><span class="badge badge-gray">已结束</span></div>
+            <div class="act-card-title">党史学习教育专题讲座</div>
+            <div class="act-card-meta"><span>📅 2024-12-10 09:00</span><span>📍 行政楼多功能厅</span></div>
+            <div class="act-card-meta" style="margin-top:6px;"><span>👥 参与 45 人</span></div>
+            <a href="activity-detail.html" class="btn btn-outline btn-sm" style="margin-top:14px;display:inline-block;">查看回顾</a>
+          </div>
+        </div>
+
+        <!-- Activity 4 -->
+        <div class="card act-card">
+          <div class="act-card-img" style="background:linear-gradient(135deg,#4a0000,#960000);">🏛️</div>
+          <div class="act-card-body">
+            <div style="margin-bottom:8px;display:flex;gap:6px;flex-wrap:wrap;"><span class="badge badge-red">仪式活动</span><span class="badge badge-gray">已结束</span></div>
+            <div class="act-card-title">第四季度预备党员宣誓仪式</div>
+            <div class="act-card-meta"><span>📅 2024-11-28 09:00</span><span>📍 党建活动室</span></div>
+            <div class="act-card-meta" style="margin-top:6px;"><span>👥 参与 20 人</span></div>
+            <a href="activity-detail.html" class="btn btn-outline btn-sm" style="margin-top:14px;display:inline-block;">查看回顾</a>
+          </div>
+        </div>
+
+        <!-- Activity 5 -->
+        <div class="card act-card">
+          <div class="act-card-img" style="background:linear-gradient(135deg,#003a99,#165DFF);">🌟</div>
+          <div class="act-card-body">
+            <div style="margin-bottom:8px;display:flex;gap:6px;flex-wrap:wrap;"><span class="badge badge-blue">志愿服务</span><span class="badge badge-green">报名中</span></div>
+            <div class="act-card-title">党员志愿服务进社区活动</div>
+            <div class="act-card-meta"><span>📅 2024-12-22 08:30</span><span>📍 周边社区</span></div>
+            <div class="act-card-meta" style="margin-top:6px;"><span>👥 已报名 12/20</span></div>
+            <a href="activity-detail.html" class="btn btn-blue btn-sm" style="margin-top:14px;display:inline-block;">立即报名</a>
+          </div>
+        </div>
+
+        <!-- Activity 6 -->
+        <div class="card act-card">
+          <div class="act-card-img" style="background:linear-gradient(135deg,#5a0000,#c90000);">📝</div>
+          <div class="act-card-body">
+            <div style="margin-bottom:8px;display:flex;gap:6px;flex-wrap:wrap;"><span class="badge badge-red">组织生活</span><span class="badge badge-green">报名中</span></div>
+            <div class="act-card-title">2024年度组织生活会</div>
+            <div class="act-card-meta"><span>📅 2024-12-25 14:00</span><span>📍 党建活动室</span></div>
+            <div class="act-card-meta" style="margin-top:6px;"><span>👥 已报名 30/36</span></div>
+            <a href="activity-detail.html" class="btn btn-red btn-sm" style="margin-top:14px;display:inline-block;">立即报名</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-title">人工智能协会</div>
+          <div class="footer-brand-desc">以党建为引领，以智汇为纽带，以AI为翼。</div>
+        </div>
+        <div>
+          <div class="footer-col-title">快速导航</div>
+          <a href="index.html" class="footer-link">首页</a>
+          <a href="party.html" class="footer-link">党建引领专区</a>
+          <a href="showcase.html" class="footer-link">社团风采</a>
+        </div>
+        <div>
+          <div class="footer-col-title">功能模块</div>
+          <a href="study.html" class="footer-link">学习中心</a>
+          <a href="chat.html" class="footer-link">AI智能问答</a>
+          <a href="message.html" class="footer-link">留言板</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">© 2024 <span>人工智能协会</span> · 党建文化平台</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="common.js"></script>
+</body>
+</html>

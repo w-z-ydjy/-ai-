@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>党建引领专区 - 人工智能协会 · 党建文化平台</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Page loader -->
+  <div id="pageLoader" class="page-loader">
+    <div class="loader-content">
+      <div class="loader-spinner"></div>
+      <div class="loader-text">人工智能协会</div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast"></div>
+
+  <!-- Top Navigation -->
+  <nav id="topnav">
+    <div class="nav-wrap">
+      <div class="nav-logo" onclick="window.location.href='index.html'">
+        <div class="nav-logo-icon">★</div>
+        <div>
+          <div class="nav-logo-text">人工智能协会 · 党建文化</div>
+        </div>
+      </div>
+      <div class="nav-search">
+        <input type="text" id="searchInput" placeholder="搜索党建内容..." class="search-input">
+        <button class="search-btn" onclick="performSearch()">🔍</button>
+      </div>
+      <div class="nav-links">
+        <div class="nav-link" onclick="window.location.href='index.html'">首 页</div>
+        <div class="nav-link active" onclick="window.location.href='party.html'">党建引领专区</div>
+        <div class="nav-link" onclick="window.location.href='showcase.html'">社团风采</div>
+        <div class="nav-link" onclick="window.location.href='activities.html'">党建活动</div>
+        <div class="nav-link" onclick="window.location.href='study.html'">学习中心</div>
+        <div class="nav-link" onclick="window.location.href='chat.html'">AI智能问答</div>
+        <div class="nav-link" onclick="window.location.href='message.html'">留言板</div>
+      </div>
+      <div class="nav-right" id="navRight">
+        <button class="nav-btn" onclick="toggleTheme()" id="themeToggle">🌙 深色</button>
+        <button class="nav-btn nav-btn-login" onclick="window.location.href='login.html'">登 录</button>
+        <button class="nav-btn nav-btn-admin" onclick="window.location.href='admin.html'">后台管理</button>
+      </div>
+      <button class="hamburger" onclick="toggleMobileNav()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav -->
+  <div class="mobile-nav" id="mobileNav">
+    <div class="mobile-nav-item" onclick="window.location.href='index.html';toggleMobileNav()">🏠 首页</div>
+    <div class="mobile-nav-item" onclick="window.location.href='party.html';toggleMobileNav()">🚩 党建引领专区</div>
+    <div class="mobile-nav-item" onclick="window.location.href='showcase.html';toggleMobileNav()">🌟 社团风采</div>
+    <div class="mobile-nav-item" onclick="window.location.href='activities.html';toggleMobileNav()">📅 党建活动</div>
+    <div class="mobile-nav-item" onclick="window.location.href='study.html';toggleMobileNav()">📚 学习中心</div>
+    <div class="mobile-nav-item" onclick="window.location.href='chat.html';toggleMobileNav()">🤖 AI智能问答</div>
+    <div class="mobile-nav-item" onclick="window.location.href='message.html';toggleMobileNav()">💬 留言板</div>
+  </div>
+
+  <!-- Hero Banner -->
+  <div style="background:linear-gradient(120deg,var(--red-dark),var(--red));padding:40px 0;color:#fff;">
+    <div class="container">
+      <div class="sec-tag" style="color:rgba(255,255,255,0.7);">PARTY CULTURE</div>
+      <h1 style="font-size:32px;font-weight:900;margin-top:6px;">党建引领专区</h1>
+      <p style="font-size:14px;opacity:0.75;margin-top:8px;">学习贯彻习近平新时代中国特色社会主义思想，坚定理想信念，凝聚奋进力量</p>
+    </div>
+  </div>
+
+  <!-- Party Nav -->
+  <div class="party-nav">
+    <div class="container">
+      <div class="party-nav-inner" id="partyNavInner">
+        <div class="party-nav-item active" onclick="switchPartyTab('news',this)">党建新闻</div>
+        <div class="party-nav-item" onclick="switchPartyTab('policy',this)">政策文件</div>
+        <div class="party-nav-item" onclick="switchPartyTab('history',this)">党史学习</div>
+        <div class="party-nav-item" onclick="switchPartyTab('charter',this)">党章党规</div>
+        <div class="party-nav-item" onclick="switchPartyTab('culture',this)">红色文化</div>
+        <div class="party-nav-item" onclick="switchPartyTab('tech',this)">科技强国专栏</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <!-- Party News -->
+      <div id="ptab-news">
+        <div class="grid-3">
+          <a href="party-detail.html" class="card act-card">
+            <div class="act-card-img" style="background:linear-gradient(135deg,#4a0000,#c90000);">🚩</div>
+            <div class="act-card-body"><div class="act-card-title">人工智能协会2024年度党员发展大会圆满召开</div><div class="act-card-meta"><span class="badge badge-red">要闻</span><span>2024-12-15</span></div></div>
+          </a>
+          <a href="party-detail.html" class="card act-card">
+            <div class="act-card-img" style="background:linear-gradient(135deg,#003a99,#165DFF);">📋</div>
+            <div class="act-card-body"><div class="act-card-title">关于深入开展主题教育学习活动的通知</div><div class="act-card-meta"><span class="badge badge-blue">通知</span><span>2024-12-10</span></div></div>
+          </a>
+          <a href="party-detail.html" class="card act-card">
+            <div class="act-card-img" style="background:linear-gradient(135deg,#5a3000,#c9a84c);">🎖️</div>
+            <div class="act-card-body"><div class="act-card-title">社团党支部荣获"优秀党支部"称号</div><div class="act-card-meta"><span class="badge badge-gold">荣誉</span><span>2024-12-05</span></div></div>
+          </a>
+          <a href="party-detail.html" class="card act-card">
+            <div class="act-card-img" style="background:linear-gradient(135deg,#4a0000,#960000);">🏛️</div>
+            <div class="act-card-body"><div class="act-card-title">第四季度预备党员宣誓仪式隆重举行</div><div class="act-card-meta"><span class="badge badge-red">活动</span><span>2024-11-28</span></div></div>
+          </a>
+          <a href="party-detail.html" class="card act-card">
+            <div class="act-card-img" style="background:linear-gradient(135deg,#003a99,#0040CC);">💡</div>
+            <div class="act-card-body"><div class="act-card-title">AI赋能党建：智慧党建平台建设工作汇报</div><div class="act-card-meta"><span class="badge badge-blue">AI党建</span><span>2024-11-20</span></div></div>
+          </a>
+          <a href="party-detail.html" class="card act-card">
+            <div class="act-card-img" style="background:linear-gradient(135deg,#4a0000,#c90000);">📰</div>
+            <div class="act-card-body"><div class="act-card-title">党支部书记开展"不忘初心"专题组织生活会</div><div class="act-card-meta"><span class="badge badge-red">组织生活</span><span>2024-11-15</span></div></div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Policy Files -->
+      <div id="ptab-policy" style="display:none;">
+        <div class="card" style="padding:0;">
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>文件名称</th><th>类型</th><th>发布日期</th><th>操作</th></tr></thead>
+              <tbody>
+                <tr><td><a href="party-detail.html" style="color:var(--blue);">中国共产党章程（最新版）</a></td><td><span class="badge badge-red">党规</span></td><td>2022-10-22</td><td><button class="action-btn act-edit" onclick="showToast('开始下载...')">下载</button></td></tr>
+                <tr><td><a href="party-detail.html" style="color:var(--blue);">关于加强新时代高校党建工作的指导意见</a></td><td><span class="badge badge-blue">文件</span></td><td>2024-06-01</td><td><button class="action-btn act-edit" onclick="showToast('开始下载...')">下载</button></td></tr>
+                <tr><td><a href="party-detail.html" style="color:var(--blue);">高校学生党支部工作条例（试行）</a></td><td><span class="badge badge-blue">条例</span></td><td>2023-09-15</td><td><button class="action-btn act-edit" onclick="showToast('开始下载...')">下载</button></td></tr>
+                <tr><td><a href="party-detail.html" style="color:var(--blue);">中国共产党发展党员工作细则</a></td><td><span class="badge badge-red">细则</span></td><td>2023-03-01</td><td><button class="action-btn act-edit" onclick="showToast('开始下载...')">下载</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- History -->
+      <div id="ptab-history" style="display:none;">
+        <div class="grid-3">
+          <a href="party-detail.html" class="card act-card"><div class="act-card-img" style="background:linear-gradient(135deg,#4a0000,#960000);">🏴</div><div class="act-card-body"><div class="act-card-title">中国共产党百年奋斗的历史意义</div><div class="act-card-meta"><span class="badge badge-red">党史</span><span>专题学习</span></div></div></a>
+          <a href="party-detail.html" class="card act-card"><div class="act-card-img" style="background:linear-gradient(135deg,#4a0000,#c90000);">⭐</div><div class="act-card-body"><div class="act-card-title">建党精神：坚持真理、坚守理想</div><div class="act-card-meta"><span class="badge badge-gold">精神</span><span>重点学习</span></div></div></a>
+          <a href="party-detail.html" class="card act-card"><div class="act-card-img" style="background:linear-gradient(135deg,#003a99,#165DFF);">📜</div><div class="act-card-body"><div class="act-card-title">新民主主义革命时期的光辉历程</div><div class="act-card-meta"><span class="badge badge-blue">历史</span><span>系列课程</span></div></div></a>
+        </div>
+      </div>
+
+      <!-- Charter -->
+      <div id="ptab-charter" style="display:none;">
+        <div class="card" style="padding:32px;max-width:720px;">
+          <h3 style="font-size:20px;font-weight:700;color:var(--text);margin-bottom:16px;">中国共产党章程（节选）</h3>
+          <p style="font-size:15px;color:var(--text2);line-height:2;margin-bottom:14px;">中国共产党是中国工人阶级的先锋队，同时是中国人民和中华民族的先锋队，是中国特色社会主义事业的领导核心，代表中国先进生产力的发展要求，代表中国先进文化的前进方向，代表中国最广大人民的根本利益。党的最高理想和最终目标是实现共产主义。</p>
+          <p style="font-size:15px;color:var(--text2);line-height:2;margin-bottom:20px;">中国共产党以马克思列宁主义、毛泽东思想、邓小平理论、"三个代表"重要思想、科学发展观、习近平新时代中国特色社会主义思想作为自己的行动指南。</p>
+          <button class="btn btn-red btn-sm" onclick="showToast('开始下载党章全文...')">下载完整党章</button>
+        </div>
+      </div>
+
+      <!-- Red Culture -->
+      <div id="ptab-culture" style="display:none;">
+        <div class="grid-3">
+          <a href="party-detail.html" class="card act-card"><div class="act-card-img" style="background:linear-gradient(135deg,#4a0000,#c90000);">🏔️</div><div class="act-card-body"><div class="act-card-title">长征精神：伟大的精神力量</div><div class="act-card-meta"><span class="badge badge-red">红色文化</span></div></div></a>
+          <a href="party-detail.html" class="card act-card"><div class="act-card-img" style="background:linear-gradient(135deg,#5a0000,#960000);">🌾</div><div class="act-card-body"><div class="act-card-title">延安精神：艰苦奋斗、实事求是</div><div class="act-card-meta"><span class="badge badge-red">红色文化</span></div></div></a>
+          <a href="party-detail.html" class="card act-card"><div class="act-card-img" style="background:linear-gradient(135deg,#003a99,#165DFF);">🕊️</div><div class="act-card-body"><div class="act-card-title">雷锋精神：全心全意为人民服务</div><div class="act-card-meta"><span class="badge badge-blue">精神谱系</span></div></div></a>
+        </div>
+      </div>
+
+      <!-- Tech -->
+      <div id="ptab-tech" style="display:none;">
+        <div class="alert alert-info">📡 科技强国专栏聚焦AI、大数据、量子计算等前沿科技与党建工作的深度融合</div>
+        <div class="grid-3">
+          <a href="party-detail.html" class="card act-card"><div class="act-card-img" style="background:linear-gradient(135deg,#003a99,#165DFF);">🤖</div><div class="act-card-body"><div class="act-card-title">人工智能赋能新时代党建工作</div><div class="act-card-meta"><span class="badge badge-blue">AI党建</span></div></div></a>
+          <a href="party-detail.html" class="card act-card"><div class="act-card-img" style="background:linear-gradient(135deg,#003a99,#0040CC);">📊</div><div class="act-card-body"><div class="act-card-title">大数据助力党员管理现代化</div><div class="act-card-meta"><span class="badge badge-blue">科技应用</span></div></div></a>
+          <a href="party-detail.html" class="card act-card"><div class="act-card-img" style="background:linear-gradient(135deg,#4a0000,#c90000);">🚀</div><div class="act-card-body"><div class="act-card-title">科技强国战略与党的引领作用</div><div class="act-card-meta"><span class="badge badge-red">专题</span></div></div></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-title">人工智能协会</div>
+          <div class="footer-brand-desc">以党建为引领，以智汇为纽带，以AI为翼，致力于打造现代化、智能化的党建文化平台。</div>
+        </div>
+        <div>
+          <div class="footer-col-title">快速导航</div>
+          <a href="index.html" class="footer-link">首页</a>
+          <a href="party.html" class="footer-link">党建引领专区</a>
+          <a href="showcase.html" class="footer-link">社团风采</a>
+        </div>
+        <div>
+          <div class="footer-col-title">功能模块</div>
+          <a href="study.html" class="footer-link">学习中心</a>
+          <a href="chat.html" class="footer-link">AI智能问答</a>
+          <a href="message.html" class="footer-link">留言板</a>
+        </div>
+        <div>
+          <div class="footer-col-title">联系我们</div>
+          <div class="footer-link">📍 武汉市江夏区</div>
+          <div class="footer-link">✉️ zhihui.ai@wbus.edu.cn</div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">© 2024 <span>人工智能协会</span> · 党建文化平台</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="common.js"></script>
+</body>
+</html>

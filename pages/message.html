@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>留言板 - 人工智能协会 · 党建文化平台</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Page loader -->
+  <div id="pageLoader" class="page-loader">
+    <div class="loader-content">
+      <div class="loader-spinner"></div>
+      <div class="loader-text">人工智能协会</div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast"></div>
+
+  <!-- Top Navigation -->
+  <nav id="topnav">
+    <div class="nav-wrap">
+      <div class="nav-logo" onclick="window.location.href='index.html'">
+        <div class="nav-logo-icon">★</div>
+        <div><div class="nav-logo-text">人工智能协会 · 党建文化</div></div>
+      </div>
+      <div class="nav-links">
+        <div class="nav-link" onclick="window.location.href='index.html'">首 页</div>
+        <div class="nav-link" onclick="window.location.href='party.html'">党建引领专区</div>
+        <div class="nav-link" onclick="window.location.href='showcase.html'">社团风采</div>
+        <div class="nav-link" onclick="window.location.href='activities.html'">党建活动</div>
+        <div class="nav-link" onclick="window.location.href='study.html'">学习中心</div>
+        <div class="nav-link" onclick="window.location.href='chat.html'">AI智能问答</div>
+        <div class="nav-link active" onclick="window.location.href='message.html'">留言板</div>
+      </div>
+      <div class="nav-right" id="navRight">
+        <button class="nav-btn" onclick="toggleTheme()">🌙 深色</button>
+        <button class="nav-btn nav-btn-login" onclick="window.location.href='login.html'">登 录</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Banner -->
+  <div style="background:linear-gradient(120deg,var(--red-dark),var(--red));padding:40px 0;color:#fff;">
+    <div class="container">
+      <div class="sec-tag" style="color:rgba(255,255,255,0.7);">MESSAGE</div>
+      <h1 style="font-size:32px;font-weight:900;margin-top:6px;">留言板 · 意见建议</h1>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <div class="grid-2" style="gap:32px;align-items:start;">
+        <!-- Submit -->
+        <div>
+          <div class="sec-hd"><div class="sec-tag">SUBMIT</div><h2 class="sec-title">提交<span>留言</span></h2></div>
+          <div class="card" style="padding:28px;">
+            <div class="form-group">
+              <label class="form-label">姓名 / 昵称</label>
+              <input class="form-input" id="msgName" placeholder="请输入您的姓名或昵称">
+            </div>
+            <div class="form-group">
+              <label class="form-label">联系方式（选填）</label>
+              <input class="form-input" id="msgContact" placeholder="邮箱 / 微信 / 手机号">
+            </div>
+            <div class="form-group">
+              <label class="form-label">留言类型</label>
+              <select class="form-select" id="msgType">
+                <option>意见建议</option>
+                <option>活动反馈</option>
+                <option>学习心得</option>
+                <option>其他</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">留言内容</label>
+              <textarea class="form-textarea" id="msgContent" placeholder="请输入您的留言内容，我们将认真阅读每一条留言..." style="min-height:130px;"></textarea>
+            </div>
+            <button class="btn btn-red" style="width:100%;justify-content:center;" onclick="submitMessage()">📨 提交留言</button>
+            <p style="font-size:12px;color:var(--text3);margin-top:10px;text-align:center;">* 所有留言将经管理员审核后展示</p>
+          </div>
+        </div>
+
+        <!-- Messages -->
+        <div>
+          <div class="sec-hd hd-row">
+            <div><div class="sec-tag">MESSAGES</div><h2 class="sec-title">留言<span>展示</span></h2></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <div class="card" style="padding:20px 24px;">
+              <div style="display:flex;gap:12px;align-items:flex-start;">
+                <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--red),var(--red-dark));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;flex-shrink:0;">张</div>
+                <div style="flex:1;">
+                  <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px;">
+                    <span style="font-weight:700;font-size:14px;">张同学</span>
+                    <span class="badge badge-green">已审核</span>
+                    <span style="font-size:12px;color:var(--text3);">2024-12-14</span>
+                  </div>
+                  <p style="font-size:14px;color:var(--text2);line-height:1.8;">人工智能协会将先进AI技术与党建工作有机融合，既有深度又有创新，希望越办越好！</p>
+                </div>
+              </div>
+            </div>
+            <div class="card" style="padding:20px 24px;">
+              <div style="display:flex;gap:12px;align-items:flex-start;">
+                <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--blue-dark));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;flex-shrink:0;">李</div>
+                <div style="flex:1;">
+                  <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px;">
+                    <span style="font-weight:700;font-size:14px;">李同学</span>
+                    <span class="badge badge-green">已审核</span>
+                    <span style="font-size:12px;color:var(--text3);">2024-12-12</span>
+                  </div>
+                  <p style="font-size:14px;color:var(--text2);line-height:1.8;">通过参加社团的主题党日活动，我对党的历史有了更深入的了解，更加坚定了入党的决心！</p>
+                </div>
+              </div>
+            </div>
+            <div class="card" style="padding:20px 24px;">
+              <div style="display:flex;gap:12px;align-items:flex-start;">
+                <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#5a3000,var(--gold));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;flex-shrink:0;">王</div>
+                <div style="flex:1;">
+                  <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px;">
+                    <span style="font-weight:700;font-size:14px;">王同学</span>
+                    <span class="badge badge-green">已审核</span>
+                    <span style="font-size:12px;color:var(--text3);">2024-12-10</span>
+                  </div>
+                  <p style="font-size:14px;color:var(--text2);line-height:1.8;">AI智能问答助手非常实用，帮助我快速了解了入党相关知识，建议继续完善问答库！</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-title">人工智能协会</div>
+          <div class="footer-brand-desc">以党建为引领，以智汇为纽带，以AI为翼。</div>
+        </div>
+        <div>
+          <div class="footer-col-title">快速导航</div>
+          <a href="index.html" class="footer-link">首页</a>
+          <a href="party.html" class="footer-link">党建引领专区</a>
+          <a href="showcase.html" class="footer-link">社团风采</a>
+        </div>
+        <div>
+          <div class="footer-col-title">功能模块</div>
+          <a href="study.html" class="footer-link">学习中心</a>
+          <a href="chat.html" class="footer-link">AI智能问答</a>
+          <a href="message.html" class="footer-link">留言板</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">© 2024 <span>人工智能协会</span> · 党建文化平台</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="common.js"></script>
+  <script>
+    function submitMessage() {
+      const name = document.getElementById('msgName').value.trim();
+      const content = document.getElementById('msgContent').value.trim();
+      
+      if (!name) {
+        showToast('请输入姓名或昵称');
+        return;
+      }
+      if (!content) {
+        showToast('请输入留言内容');
+        return;
+      }
+      
+      showToast('✅ 留言提交成功！我们将认真阅读并尽快回复您');
+      document.getElementById('msgName').value = '';
+      document.getElementById('msgContact').value = '';
+      document.getElementById('msgContent').value = '';
+    }
+  </script>
+</body>
+</html>

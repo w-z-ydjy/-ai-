@@ -1,0 +1,84 @@
+/* ============================================================
+   智慧党建平台 - CSS变量系统
+   ============================================================ */
+
+/* Light theme variables */
+:root {
+  /* 颜色系统 */
+  --red: #c90000;
+  --red-dark: #960000;
+  --red-light: #ff2020;
+  --red-bg: #fff5f5;
+
+  --blue: #165DFF;
+  --blue-dark: #0040CC;
+  --blue-light: #4080FF;
+  --blue-bg: #f0f4ff;
+
+  --gold: #C9A84C;
+  --gold-light: #E8C87A;
+
+  /* 背景颜色 */
+  --bg: #F7F8FA;
+  --bg2: #FFFFFF;
+
+  /* 文本颜色 */
+  --text: #111827;
+  --text2: #374151;
+  --text3: #6B7280;
+
+  /* 边框和阴影 */
+  --border: #E5E6EB;
+  --shadow: 0 4px 20px rgba(0,0,0,0.08);
+  --shadow-red: 0 4px 20px rgba(201,0,0,0.18);
+  --shadow-blue: 0 4px 20px rgba(22,93,255,0.18);
+
+  /* 尺寸和间距 */
+  --radius: 10px;
+  --radius-sm: 6px;
+  --nav-h: 64px;
+
+  /* 字体大小 */
+  --font-size-base: 16px;
+  --font-size-sm: 14px;
+  --font-size-lg: 18px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 24px;
+}
+
+/* Dark theme variables */
+[data-theme="dark"] {
+  /* 颜色系统 */
+  --red: #ff2020;
+  --red-dark: #c90000;
+  --red-light: #ff5050;
+  --red-bg: #331A1A;
+
+  --blue: #4080FF;
+  --blue-dark: #165DFF;
+  --blue-light: #6699FF;
+  --blue-bg: #1A1E33;
+
+  --gold: #E8C87A;
+  --gold-light: #F5E4B8;
+
+  /* 背景颜色 */
+  --bg: #1A1A1A;
+  --bg2: #2D2D2D;
+
+  /* 文本颜色 */
+  --text: #FFFFFF;
+  --text2: #D4D4D4;
+  --text3: #A0A0A0;
+
+  /* 边框和阴影 */
+  --border: #3D3D3D;
+  --shadow: 0 4px 20px rgba(0,0,0,0.3);
+  --shadow-red: 0 4px 20px rgba(201,0,0,0.3);
+  --shadow-blue: 0 4px 20px rgba(22,93,255,0.3);
+}
+
+/* 主题切换辅助类 */
+.theme-transition * {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}

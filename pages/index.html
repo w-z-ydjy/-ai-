@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>人工智能协会 · 党建文化平台</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Page loader -->
+  <div id="pageLoader" class="page-loader">
+    <div class="loader-content">
+      <div class="loader-spinner"></div>
+      <div class="loader-text">人工智能协会</div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast"></div>
+
+  <!-- Top Navigation -->
+  <nav id="topnav">
+    <div class="nav-wrap">
+      <div class="nav-logo" onclick="window.location.href='index.html'">
+        <div class="nav-logo-icon">★</div>
+        <div>
+          <div class="nav-logo-text">人工智能协会 · 党建文化</div>
+          <span class="nav-logo-sub"></span>
+        </div>
+      </div>
+      <div class="nav-search">
+        <input type="text" id="searchInput" placeholder="搜索党建内容..." class="search-input">
+        <button class="search-btn" onclick="performSearch()">🔍</button>
+      </div>
+      <div class="nav-links">
+        <div class="nav-link active" data-page="home">首 页</div>
+        <div class="nav-dropdown">
+          <div class="nav-link" onclick="window.location.href='party.html'">党建引领专区</div>
+          <div class="nav-dropdown-menu">
+            <div class="nav-dropdown-item" onclick="window.location.href='party.html'">党建新闻</div>
+            <div class="nav-dropdown-item" onclick="window.location.href='party.html'">政策文件</div>
+            <div class="nav-dropdown-item" onclick="window.location.href='party.html'">党史学习</div>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <div class="nav-link" onclick="window.location.href='showcase.html'">社团风采</div>
+          <div class="nav-dropdown-menu">
+            <div class="nav-dropdown-item" onclick="window.location.href='showcase.html'">社团简介</div>
+            <div class="nav-dropdown-item" onclick="window.location.href='showcase.html'">成员风采</div>
+            <div class="nav-dropdown-item" onclick="window.location.href='showcase.html'">荣誉成果</div>
+          </div>
+        </div>
+        <div class="nav-link" onclick="window.location.href='activities.html'">党建活动</div>
+        <div class="nav-link" onclick="window.location.href='study.html'">学习中心</div>
+        <div class="nav-link" onclick="window.location.href='chat.html'">AI智能问答</div>
+        <div class="nav-link" onclick="window.location.href='message.html'">留言板</div>
+      </div>
+      <div class="nav-right" id="navRight">
+        <button class="nav-btn" onclick="toggleTheme()" id="themeToggle">🌙 深色</button>
+        <button class="nav-btn nav-btn-login" onclick="window.location.href='login.html'">登 录</button>
+        <button class="nav-btn nav-btn-admin" onclick="window.location.href='admin.html'">后台管理</button>
+      </div>
+      <button class="hamburger" onclick="toggleMobileNav()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav -->
+  <div class="mobile-nav" id="mobileNav">
+    <div class="mobile-nav-item" onclick="window.location.href='index.html';toggleMobileNav()">🏠 首页</div>
+    <div class="mobile-nav-item" onclick="window.location.href='party.html';toggleMobileNav()">🚩 党建引领专区</div>
+    <div class="mobile-nav-item" onclick="window.location.href='showcase.html';toggleMobileNav()">🌟 社团风采</div>
+    <div class="mobile-nav-item" onclick="window.location.href='activities.html';toggleMobileNav()">📅 党建活动</div>
+    <div class="mobile-nav-item" onclick="window.location.href='study.html';toggleMobileNav()">📚 学习中心</div>
+    <div class="mobile-nav-item" onclick="window.location.href='chat.html';toggleMobileNav()">🤖 AI智能问答</div>
+    <div class="mobile-nav-item" onclick="window.location.href='message.html';toggleMobileNav()">💬 留言板</div>
+    <div class="mobile-nav-item" onclick="window.location.href='profile.html';toggleMobileNav()">👤 个人中心</div>
+    <div class="mobile-nav-item" onclick="window.location.href='login.html';toggleMobileNav()">🔐 登录</div>
+  </div>
+
+  <!-- Hero Slider -->
+  <div class="hero">
+    <div class="hero-slides" id="heroSlides">
+      <div class="hero-slide">
+        <div class="slide-bg" style="background:linear-gradient(135deg,#4a0000,#c90000,#165DFF);"></div>
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <div class="slide-tag">党建活动</div>
+          <div class="slide-title">2024年人工智能协会<br>党员发展大会圆满举行</div>
+          <div class="slide-desc">全体党员深入学习贯彻习近平新时代中国特色社会主义思想，共谋社团党建新发展</div>
+          <a href="party-detail.html" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.5);">查看详情 →</a>
+        </div>
+      </div>
+      <div class="hero-slide">
+        <div class="slide-bg" style="background:linear-gradient(135deg,#003a99,#165DFF,#c90000);"></div>
+        <div class="slide-overlay" style="background:linear-gradient(120deg,rgba(0,40,120,0.85),rgba(201,0,0,0.45));"></div>
+        <div class="slide-content">
+          <div class="slide-tag">AI社团风采</div>
+          <div class="slide-title">人工智能 × 党建融合<br>科技赋能新时代党建工作</div>
+          <div class="slide-desc">用人工智能技术助力党建工作现代化，打造智慧党建新模式</div>
+          <a href="showcase.html" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.5);">了解更多 →</a>
+        </div>
+      </div>
+      <div class="hero-slide">
+        <div class="slide-bg" style="background:linear-gradient(135deg,#5a0000,#960000,#0032aa);"></div>
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <div class="slide-tag">学习园地</div>
+          <div class="slide-title">党建学习中心正式上线<br>在线答题·学习积分·资料库</div>
+          <div class="slide-desc">构建完善的党员学习体系，随时随地学党史、知党情、跟党走</div>
+          <a href="study.html" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.5);">进入学习 →</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-arrow hero-arrow-left" onclick="slideHero(-1)">‹</div>
+    <div class="hero-arrow hero-arrow-right" onclick="slideHero(1)">›</div>
+    <div class="hero-dots">
+      <div class="hero-dot active" onclick="goSlide(0)"></div>
+      <div class="hero-dot" onclick="goSlide(1)"></div>
+      <div class="hero-dot" onclick="goSlide(2)"></div>
+    </div>
+  </div>
+
+  <!-- Quick Entries -->
+  <div class="quick-entries">
+    <div class="quick-entries-inner">
+      <a href="study.html" class="quick-btn"><div class="quick-btn-icon">📚</div><div class="quick-btn-text">学习资料</div></a>
+      <a href="activities.html" class="quick-btn"><div class="quick-btn-icon">📅</div><div class="quick-btn-text">党建活动</div></a>
+      <a href="showcase.html" class="quick-btn"><div class="quick-btn-icon">🌟</div><div class="quick-btn-text">社团风采</div></a>
+      <a href="study.html" class="quick-btn"><div class="quick-btn-icon">📁</div><div class="quick-btn-text">资料下载</div></a>
+      <a href="chat.html" class="quick-btn"><div class="quick-btn-icon">🤖</div><div class="quick-btn-text">AI问答</div></a>
+      <a href="quiz.html" class="quick-btn"><div class="quick-btn-icon">✍️</div><div class="quick-btn-text">在线答题</div></a>
+      <a href="message.html" class="quick-btn"><div class="quick-btn-icon">💬</div><div class="quick-btn-text">留言建议</div></a>
+      <a href="profile.html" class="quick-btn"><div class="quick-btn-icon">👤</div><div class="quick-btn-text">个人中心</div></a>
+    </div>
+  </div>
+
+  <!-- News + Oath Section -->
+  <div class="section">
+    <div class="container">
+      <div class="grid-2" style="gap:40px;align-items:start;">
+        <!-- News -->
+        <div>
+          <div class="sec-hd hd-row">
+            <div><div class="sec-tag">PARTY NEWS</div><h2 class="sec-title">党建<span>要闻</span></h2></div>
+            <a href="party.html" class="sec-more">查看全部 →</a>
+          </div>
+          <div class="card" style="padding:8px 24px;">
+            <div class="news-list">
+              <a href="party-detail.html" class="news-item">
+                <div class="news-item-thumb">🚩</div>
+                <div class="news-item-body">
+                  <div class="news-item-title">人工智能协会2024年度党员发展大会圆满召开</div>
+                  <div class="news-item-meta"><span class="tag tag-red">要闻</span><span>2024-12-15</span></div>
+                </div>
+              </a>
+              <a href="party-detail.html" class="news-item">
+                <div class="news-item-thumb">📖</div>
+                <div class="news-item-body">
+                  <div class="news-item-title">关于深入开展主题教育学习活动的通知</div>
+                  <div class="news-item-meta"><span class="tag tag-blue">通知</span><span>2024-12-10</span></div>
+                </div>
+              </a>
+              <a href="party-detail.html" class="news-item">
+                <div class="news-item-thumb">🎖️</div>
+                <div class="news-item-body">
+                  <div class="news-item-title">社团党支部荣获"优秀党支部"称号</div>
+                  <div class="news-item-meta"><span class="tag tag-gold">荣誉</span><span>2024-12-05</span></div>
+                </div>
+              </a>
+              <a href="party-detail.html" class="news-item">
+                <div class="news-item-thumb">🏛️</div>
+                <div class="news-item-body">
+                  <div class="news-item-title">第四季度预备党员宣誓仪式隆重举行</div>
+                  <div class="news-item-meta"><span class="tag tag-red">活动</span><span>2024-11-28</span></div>
+                </div>
+              </a>
+              <a href="party-detail.html" class="news-item">
+                <div class="news-item-thumb">💡</div>
+                <div class="news-item-body">
+                  <div class="news-item-title">AI赋能党建：智慧党建平台建设工作汇报</div>
+                  <div class="news-item-meta"><span class="tag tag-blue">AI党建</span><span>2024-11-20</span></div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Oath -->
+        <div>
+          <div class="sec-hd"><div class="sec-tag">OATH</div><h2 class="sec-title">入党<span>誓词</span></h2></div>
+          <div class="oath-box">
+            <span class="oath-star">★</span>
+            <div style="font-size:11px;letter-spacing:5px;color:var(--gold-light);margin-bottom:20px;">中国共产党入党誓词</div>
+            <p class="oath-text">我志愿加入中国共产党，拥护党的纲领，遵守党的章程，履行党员义务，执行党的决定，<em>严守党的纪律，保守党的秘密</em>，对党忠诚，积极工作，为共产主义奋斗终身，随时准备为党和人民牺牲一切，<em>永不叛党</em>。</p>
+            <p style="margin-top:20px;font-size:12px;color:rgba(255,255,255,0.35);letter-spacing:2px;position:relative;">——《中国共产党章程》</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div style="background:#fff;padding:48px 0;border-top:1px solid var(--border);">
+    <div class="container">
+      <div class="grid-4">
+        <div class="stat-card"><div class="stat-number">1<span class="stat-unit">个</span></div><div class="stat-label">党支部</div></div>
+        <div class="stat-card"><div class="stat-number">36<span class="stat-unit">名</span></div><div class="stat-label">党员同志</div></div>
+        <div class="stat-card"><div class="stat-number">58<span class="stat-unit">场</span></div><div class="stat-label">党建活动</div></div>
+        <div class="stat-card"><div class="stat-number">100<span class="stat-unit">%</span></div><div class="stat-label">党课参与率</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recent Activities -->
+  <div class="section">
+    <div class="container">
+      <div class="sec-hd hd-row">
+        <div><div class="sec-tag">ACTIVITIES</div><h2 class="sec-title">近期<span>活动</span></h2></div>
+        <a href="activities.html" class="sec-more">全部活动 →</a>
+      </div>
+      <div class="grid-3">
+        <a href="activity-detail.html" class="card act-card">
+          <div class="act-card-img" style="background:linear-gradient(135deg,#4a0000,#c90000);">🚩</div>
+          <div class="act-card-body">
+            <div style="margin-bottom:8px;display:flex;gap:6px;"><span class="badge badge-red">党日活动</span><span class="badge badge-green">报名中</span></div>
+            <div class="act-card-title">2024年第四季度主题党日活动</div>
+            <div class="act-card-meta"><span>📅 2024-12-20</span><span>📍 图书馆报告厅</span><span>👥 已报名 28/50</span></div>
+          </div>
+        </a>
+        <a href="activity-detail.html" class="card act-card">
+          <div class="act-card-img" style="background:linear-gradient(135deg,#003a99,#165DFF);">🤖</div>
+          <div class="act-card-body">
+            <div style="margin-bottom:8px;display:flex;gap:6px;"><span class="badge badge-blue">AI融合</span><span class="badge badge-green">报名中</span></div>
+            <div class="act-card-title">AI技术与党建融合研讨会</div>
+            <div class="act-card-meta"><span>📅 2024-12-18</span><span>📍 实验楼202</span><span>👥 已报名 15/30</span></div>
+          </div>
+        </a>
+        <a href="activity-detail.html" class="card act-card">
+          <div class="act-card-img" style="background:linear-gradient(135deg,#5a3000,#c9a84c);">📖</div>
+          <div class="act-card-body">
+            <div style="margin-bottom:8px;display:flex;gap:6px;"><span class="badge badge-gold">学习教育</span><span class="badge badge-gray">已结束</span></div>
+            <div class="act-card-title">党史学习教育专题讲座</div>
+            <div class="act-card-meta"><span>📅 2024-12-10</span><span>📍 行政楼多功能厅</span><span>👥 参与 45 人</span></div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Banner -->
+  <div class="banner-strip">
+    <div class="container">
+      <div class="banner-strip-title">不忘初心 · 牢记使命 · 凝心铸魂 · 砥砺奋进</div>
+      <div class="banner-strip-sub">人工智能协会党建文化平台 · 以AI赋能党建，以党建引领发展</div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-title">人工智能协会</div>
+          <div class="footer-brand-desc">以党建为引领，以智汇为纽带，以AI为翼，致力于打造现代化、智能化的党建文化平台，凝心铸魂，砥砺奋进。</div>
+        </div>
+        <div>
+          <div class="footer-col-title">快速导航</div>
+          <a href="index.html" class="footer-link">首页</a>
+          <a href="party.html" class="footer-link">党建引领专区</a>
+          <a href="showcase.html" class="footer-link">社团风采</a>
+          <a href="activities.html" class="footer-link">党建活动</a>
+        </div>
+        <div>
+          <div class="footer-col-title">功能模块</div>
+          <a href="study.html" class="footer-link">学习中心</a>
+          <a href="chat.html" class="footer-link">AI智能问答</a>
+          <a href="message.html" class="footer-link">留言板</a>
+          <a href="profile.html" class="footer-link">个人中心</a>
+        </div>
+        <div>
+          <div class="footer-col-title">联系我们</div>
+          <div class="footer-link">📍 武汉市江夏区</div>
+          <div class="footer-link">✉️ zhihui.ai@wbus.edu.cn</div>
+          <div class="footer-link">💬 微信公众号：人工智能党建</div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">© 2024 <span>人工智能协会</span> · 党建文化平台 · All Rights Reserved</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.3);">★ 不忘初心 · 牢记使命</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="common.js"></script>
+  <script>
+    // Auto slide
+    setInterval(() => slideHero(1), 4500);
+  </script>
+</body>
+</html>

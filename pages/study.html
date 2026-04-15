@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>学习中心 - 人工智能协会 · 党建文化平台</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Page loader -->
+  <div id="pageLoader" class="page-loader">
+    <div class="loader-content">
+      <div class="loader-spinner"></div>
+      <div class="loader-text">人工智能协会</div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast"></div>
+
+  <!-- Top Navigation -->
+  <nav id="topnav">
+    <div class="nav-wrap">
+      <div class="nav-logo" onclick="window.location.href='index.html'">
+        <div class="nav-logo-icon">★</div>
+        <div><div class="nav-logo-text">人工智能协会 · 党建文化</div></div>
+      </div>
+      <div class="nav-links">
+        <div class="nav-link" onclick="window.location.href='index.html'">首 页</div>
+        <div class="nav-link" onclick="window.location.href='party.html'">党建引领专区</div>
+        <div class="nav-link" onclick="window.location.href='showcase.html'">社团风采</div>
+        <div class="nav-link" onclick="window.location.href='activities.html'">党建活动</div>
+        <div class="nav-link active" onclick="window.location.href='study.html'">学习中心</div>
+        <div class="nav-link" onclick="window.location.href='chat.html'">AI智能问答</div>
+        <div class="nav-link" onclick="window.location.href='message.html'">留言板</div>
+      </div>
+      <div class="nav-right" id="navRight">
+        <button class="nav-btn" onclick="toggleTheme()">🌙 深色</button>
+        <button class="nav-btn nav-btn-login" onclick="window.location.href='login.html'">登 录</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Banner -->
+  <div style="background:linear-gradient(120deg,var(--blue-dark),var(--blue));padding:40px 0;color:#fff;">
+    <div class="container">
+      <div class="sec-tag" style="color:rgba(255,255,255,0.7);">STUDY CENTER</div>
+      <h1 style="font-size:32px;font-weight:900;margin-top:6px;">党建学习中心</h1>
+    </div>
+  </div>
+
+  <!-- Study Nav -->
+  <div class="party-nav">
+    <div class="container">
+      <div class="party-nav-inner" id="studyNavInner">
+        <div class="party-nav-item active" style="color:var(--blue);border-bottom-color:var(--blue);" onclick="switchStudyTab('materials',this)">学习资料</div>
+        <div class="party-nav-item" onclick="switchStudyTab('quiz',this)">在线答题</div>
+        <div class="party-nav-item" onclick="switchStudyTab('league',this)">团课学习</div>
+        <div class="party-nav-item" onclick="switchStudyTab('rank',this)">学习排行</div>
+        <div class="party-nav-item" onclick="switchStudyTab('records',this)">学习记录</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <!-- Materials -->
+      <div id="utab-materials">
+        <div style="display:flex;gap:10px;margin-bottom:24px;flex-wrap:wrap;">
+          <button class="btn btn-blue btn-sm" onclick="filterMaterials('all',this)">全部</button>
+          <button class="btn btn-outline-blue btn-sm" onclick="filterMaterials('doc',this)">📄 文档</button>
+          <button class="btn btn-outline-blue btn-sm" onclick="filterMaterials('video',this)">🎬 视频</button>
+        </div>
+        <div class="card" style="padding:0;">
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>资料名称</th><th>类型</th><th>大小</th><th>上传日期</th><th>操作</th></tr></thead>
+              <tbody>
+                <tr><td>《习近平关于科技创新论述摘编》</td><td><span class="badge badge-blue">📄 文档</span></td><td>2.3MB</td><td>2024-12-01</td><td><button class="action-btn act-edit" onclick="showToast('开始下载...')">下载</button></td></tr>
+                <tr><td>中国共产党章程全文</td><td><span class="badge badge-blue">📄 文档</span></td><td>1.1MB</td><td>2024-11-20</td><td><button class="action-btn act-edit" onclick="showToast('开始下载...')">下载</button></td></tr>
+                <tr><td>党史学习教育专题讲座视频</td><td><span class="badge badge-red">🎬 视频</span></td><td>256MB</td><td>2024-11-15</td><td><button class="action-btn act-edit" onclick="showToast('视频播放中...')">播放</button></td></tr>
+                <tr><td>入党积极分子培训教材</td><td><span class="badge badge-blue">📄 文档</span></td><td>4.5MB</td><td>2024-11-01</td><td><button class="action-btn act-edit" onclick="showToast('开始下载...')">下载</button></td></tr>
+                <tr><td>AI赋能党建工作实践指南</td><td><span class="badge badge-blue">📄 文档</span></td><td>3.2MB</td><td>2024-10-20</td><td><button class="action-btn act-edit" onclick="showToast('开始下载...')">下载</button></td></tr>
+                <tr><td>党建工作创新案例视频合集</td><td><span class="badge badge-red">🎬 视频</span></td><td>512MB</td><td>2024-10-01</td><td><button class="action-btn act-edit" onclick="showToast('视频播放中...')">播放</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quiz -->
+      <div id="utab-quiz" style="display:none;">
+        <div class="card" style="padding:36px;text-align:center;max-width:600px;margin:0 auto;">
+          <div style="font-size:64px;margin-bottom:20px;">✍️</div>
+          <h2 style="font-size:24px;font-weight:700;margin-bottom:12px;">党建知识测验</h2>
+          <p style="font-size:14px;color:var(--text3);margin-bottom:24px;line-height:1.8;">共 10 题 · 单选题 · 完成后可获得学习积分<br>测试内容涵盖党章党规、党史知识、时事政治</p>
+          <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+            <a href="quiz.html" class="btn btn-red">🚀 开始答题</a>
+            <button class="btn btn-outline-blue" onclick="switchStudyTab('rank', this)">🏆 查看排行</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- League -->
+      <div id="utab-league" style="display:none;">
+        <div class="card" style="padding:0;margin-bottom:24px;">
+          <div style="padding:20px 24px;background:linear-gradient(90deg,var(--blue-dark),var(--blue));color:#fff;display:flex;align-items:center;gap:12px;">
+            <span style="font-size:24px;">🌟</span>
+            <div><div style="font-weight:700;">团课学习中心</div><div style="font-size:12px;opacity:0.7;">2024年12月 · 共青团队课学习</div></div>
+          </div>
+          <div style="padding:24px;">
+            <div class="grid-3">
+              <div class="card league-course-card" style="padding:20px;cursor:pointer;">
+                <div style="font-size:32px;margin-bottom:16px;">📚</div>
+                <h3 style="font-size:16px;font-weight:600;margin-bottom:8px;">共青团基础知识</h3>
+                <p style="font-size:14px;color:var(--text2);margin-bottom:12px;line-height:1.6;">学习共青团的性质、宗旨、组织架构和基本任务。</p>
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                  <span class="badge badge-blue">基础团课</span>
+                  <span style="font-size:12px;color:var(--text3);">课时：2小时</span>
+                </div>
+              </div>
+              <div class="card league-course-card" style="padding:20px;cursor:pointer;">
+                <div style="font-size:32px;margin-bottom:16px;">⚡</div>
+                <h3 style="font-size:16px;font-weight:600;margin-bottom:8px;">团员先进性教育</h3>
+                <p style="font-size:14px;color:var(--text2);margin-bottom:12px;line-height:1.6;">深入学习习近平总书记关于青年工作的重要论述。</p>
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                  <span class="badge badge-blue">进阶团课</span>
+                  <span style="font-size:12px;color:var(--text3);">课时：3小时</span>
+                </div>
+              </div>
+              <div class="card league-course-card" style="padding:20px;cursor:pointer;">
+                <div style="font-size:32px;margin-bottom:16px;">🚀</div>
+                <h3 style="font-size:16px;font-weight:600;margin-bottom:8px;">AI技术与共青团工作</h3>
+                <p style="font-size:14px;color:var(--text2);margin-bottom:12px;line-height:1.6;">探讨如何利用AI技术创新共青团工作方式。</p>
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                  <span class="badge badge-blue">专题团课</span>
+                  <span style="font-size:12px;color:var(--text3);">课时：2.5小时</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rank -->
+      <div id="utab-rank" style="display:none;">
+        <div class="card" style="padding:0;">
+          <div style="padding:20px 24px;background:linear-gradient(90deg,var(--red-dark),var(--red));color:#fff;display:flex;align-items:center;gap:12px;">
+            <span style="font-size:24px;">🏆</span>
+            <div><div style="font-weight:700;">学习积分排行榜</div><div style="font-size:12px;opacity:0.7;">实时更新 · 基于答题成绩</div></div>
+            <div style="margin-left:auto;display:flex;gap:8px;align-items:center;">
+              <button class="btn btn-outline btn-sm" style="color:#fff;border-color:rgba(255,255,255,0.3);" onclick="changeRankPeriod('all', this)">全部</button>
+              <button class="btn btn-outline btn-sm" style="color:#fff;border-color:rgba(255,255,255,0.3);" onclick="changeRankPeriod('week', this)">本周</button>
+              <button class="btn btn-outline btn-sm" style="color:#fff;border-color:rgba(255,255,255,0.3);" onclick="changeRankPeriod('month', this)">本月</button>
+              <button class="btn btn-outline btn-sm" style="color:#fff;border-color:rgba(255,255,255,0.3);" onclick="loadRankData(currentRankPeriod)" title="刷新数据">🔄</button>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>排名</th><th>姓名</th><th>最高分</th><th>答题次数</th><th>平均分</th><th>答对数</th></tr></thead>
+              <tbody>
+                <tr><td colspan="6" style="text-align:center;padding:40px;">
+                  <div style="font-size:32px;margin-bottom:12px;">⏳</div>
+                  <div>正在加载排行榜数据...</div>
+                </td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Records -->
+      <div id="utab-records" style="display:none;">
+        <div class="card" style="padding:0;">
+          <div style="padding:20px 24px;background:linear-gradient(90deg,var(--blue-dark),var(--blue));color:#fff;display:flex;align-items:center;gap:12px;">
+            <span style="font-size:24px;">📚</span>
+            <div><div style="font-weight:700;">学习记录</div><div style="font-size:12px;opacity:0.7;">答题记录 · 自动保存</div></div>
+            <div style="margin-left:auto;">
+              <button class="btn btn-outline btn-sm" style="color:#fff;border-color:rgba(255,255,255,0.3);" onclick="loadRecordsData()" title="刷新数据">🔄</button>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>测验内容</th><th>类型</th><th>成绩/进度</th><th>答题时间</th><th>得分</th></tr></thead>
+              <tbody>
+                <tr><td colspan="5" style="text-align:center;padding:40px;">
+                  <div style="font-size:32px;margin-bottom:12px;">⏳</div>
+                  <div>正在加载学习记录...</div>
+                </td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-title">人工智能协会</div>
+          <div class="footer-brand-desc">以党建为引领，以智汇为纽带，以AI为翼。</div>
+        </div>
+        <div>
+          <div class="footer-col-title">快速导航</div>
+          <a href="index.html" class="footer-link">首页</a>
+          <a href="party.html" class="footer-link">党建引领专区</a>
+          <a href="showcase.html" class="footer-link">社团风采</a>
+        </div>
+        <div>
+          <div class="footer-col-title">功能模块</div>
+          <a href="study.html" class="footer-link">学习中心</a>
+          <a href="chat.html" class="footer-link">AI智能问答</a>
+          <a href="message.html" class="footer-link">留言板</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">© 2024 <span>人工智能协会</span> · 党建文化平台</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="common-enhanced.js"></script>
+  <script>
+    // 加载排行榜数据
+    let currentRankPeriod = 'all';
+
+    async function loadRankData(period = currentRankPeriod) {
+      const rankContainer = document.getElementById('utab-rank');
+      if (!rankContainer || rankContainer.style.display === 'none') return;
+
+      try {
+        // 更新当前时间段
+        currentRankPeriod = period;
+
+        // 更新按钮状态
+        document.querySelectorAll('#utab-rank .btn-outline').forEach(btn => {
+          btn.style.background = 'transparent';
+          btn.style.color = '#fff';
+        });
+        const activeBtn = document.querySelector(`#utab-rank button[onclick*="'${period}'"]`);
+        if (activeBtn) {
+          activeBtn.style.background = 'rgba(255,255,255,0.2)';
+          activeBtn.style.color = '#fff';
+        }
+
+        // 显示加载状态
+        const tbody = rankContainer.querySelector('tbody');
+        if (tbody) tbody.innerHTML = `
+          <tr><td colspan="6" style="text-align:center;padding:40px;">
+            <div style="font-size:32px;margin-bottom:12px;">⏳</div>
+            <div>正在加载排行榜数据...</div>
+          </td></tr>`;
+
+        // 获取排行榜数据
+        const leaderboard = await getQuizLeaderboard(10, period);
+
+        // 渲染数据
+        if (leaderboard && leaderboard.length > 0) {
+          const rows = leaderboard.map((item, index) => {
+            const rankIcon = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : index + 1;
+            const highestScore = item.highest_score || 0;
+            const attempts = item.attempts || 0;
+            const avgScore = Math.round(item.average_score || 0);
+            const totalCorrect = item.total_correct || 0;
+            const username = item.name || item.username || '用户';
+            const avatar = item.avatar ? `<img src="${item.avatar}" style="width:24px;height:24px;border-radius:50%;margin-right:8px;vertical-align:middle;">` : '👤';
+
+            return `
+              <tr>
+                <td><span style="font-size:${index < 3 ? '20px' : '16px'};">${rankIcon}</span></td>
+                <td><strong>${avatar} ${username}</strong></td>
+                <td style="color:var(--red);font-weight:700;">${highestScore}</td>
+                <td>${attempts}次</td>
+                <td>${avgScore}</td>
+                <td>${totalCorrect}</td>
+              </tr>
+            `;
+          }).join('');
+
+          if (tbody) tbody.innerHTML = rows;
+        } else {
+          if (tbody) tbody.innerHTML = `
+            <tr><td colspan="6" style="text-align:center;padding:40px;">
+              <div style="font-size:32px;margin-bottom:12px;">📊</div>
+              <div>暂无排行榜数据</div>
+            </td></tr>`;
+        }
+      } catch (error) {
+        console.error('加载排行榜失败:', error);
+        const tbody = rankContainer.querySelector('tbody');
+        if (tbody) tbody.innerHTML = `
+          <tr><td colspan="6" style="text-align:center;padding:40px;">
+            <div style="font-size:32px;margin-bottom:12px;">❌</div>
+            <div>加载失败: ${error.message || '未知错误'}</div>
+          </td></tr>`;
+      }
+    }
+
+    // 切换排行榜时间段
+    function changeRankPeriod(period, button) {
+      loadRankData(period);
+    }
+
+    // 加载学习记录数据
+    async function loadRecordsData() {
+      const recordsContainer = document.getElementById('utab-records');
+      if (!recordsContainer || recordsContainer.style.display === 'none') return;
+
+      try {
+        // 显示加载状态
+        const tbody = recordsContainer.querySelector('tbody');
+        if (tbody) tbody.innerHTML = `
+          <tr><td colspan="5" style="text-align:center;padding:40px;">
+            <div style="font-size:32px;margin-bottom:12px;">⏳</div>
+            <div>正在加载学习记录...</div>
+          </td></tr>`;
+
+        // 获取答题记录数据
+        const isLoggedIn = localStorage.getItem('userLoggedIn') === 'true';
+        if (!isLoggedIn) {
+          if (tbody) tbody.innerHTML = `
+            <tr><td colspan="5" style="text-align:center;padding:40px;">
+              <div style="font-size:32px;margin-bottom:12px;">🔒</div>
+              <div>请先登录查看学习记录</div>
+            </td></tr>`;
+          return;
+        }
+
+        const recordsData = await getUserQuizRecords(20, 0);
+        const records = recordsData.records || [];
+
+        // 渲染数据
+        if (records.length > 0) {
+          const rows = records.map(record => {
+            const date = new Date(record.created_at).toLocaleDateString();
+            const total = record.total_questions || 0;
+            const correct = record.correct_answers || 0;
+            const score = record.score || 0;
+            const timeSpent = record.time_spent ? `${Math.floor(record.time_spent / 60)}分${record.time_spent % 60}秒` : '-';
+            const accuracy = total > 0 ? Math.round((correct / total) * 100) : 0;
+            const startTime = record.start_time ? new Date(record.start_time).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) : '';
+
+            return `
+              <tr>
+                <td>党建知识测验 (${total}题)</td>
+                <td><span class="badge badge-gold">答题</span></td>
+                <td>${correct}/${total} (${accuracy}%)<br><small>耗时: ${timeSpent}</small></td>
+                <td>${date} ${startTime}</td>
+                <td style="color:var(--red);font-weight:700;">${score}</td>
+              </tr>
+            `;
+          }).join('');
+
+          if (tbody) tbody.innerHTML = rows;
+        } else {
+          if (tbody) tbody.innerHTML = `
+            <tr><td colspan="5" style="text-align:center;padding:40px;">
+              <div style="font-size:32px;margin-bottom:12px;">📝</div>
+              <div>暂无学习记录</div>
+            </td></tr>`;
+        }
+      } catch (error) {
+        console.error('加载学习记录失败:', error);
+        const tbody = recordsContainer.querySelector('tbody');
+        if (tbody) tbody.innerHTML = `
+          <tr><td colspan="5" style="text-align:center;padding:40px;">
+            <div style="font-size:32px;margin-bottom:12px;">❌</div>
+            <div>加载失败: ${error.message || '未知错误'}</div>
+          </td></tr>`;
+      }
+    }
+
+    // 修改标签切换函数以加载数据
+    const originalSwitchStudyTab = window.switchStudyTab;
+    window.switchStudyTab = function(tab, el) {
+      // 调用原始函数
+      if (originalSwitchStudyTab) originalSwitchStudyTab(tab, el);
+
+      // 根据标签页加载数据
+      setTimeout(() => {
+        if (tab === 'rank') {
+          loadRankData();
+        } else if (tab === 'records') {
+          loadRecordsData();
+        }
+      }, 100);
+    };
+
+    // 页面加载时检查当前标签页并加载数据
+    document.addEventListener('DOMContentLoaded', async function() {
+      // 等待导航栏更新
+      if (typeof updateNavigation === 'function') {
+        updateNavigation();
+      }
+
+      // 检查当前是否在排行榜或记录标签页
+      const rankTab = document.getElementById('utab-rank');
+      const recordsTab = document.getElementById('utab-records');
+
+      if (rankTab && rankTab.style.display !== 'none') {
+        loadRankData();
+      } else if (recordsTab && recordsTab.style.display !== 'none') {
+        loadRecordsData();
+      }
+    });
+  </script>
+</body>
+</html>

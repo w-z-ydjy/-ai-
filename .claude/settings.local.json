@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir *.html *.js)",
+      "Bash(curl -s http://localhost:3000/api/health)",
+      "Bash(mysql -u root -p123456 -e \"SHOW DATABASES;\")",
+      "Bash(node server-enhanced.js)",
+      "Bash(mkdir temp-react-app *)",
+      "Bash(npm create *)"
+    ]
+  }
+}

@@ -1,0 +1,73 @@
+# Automatically detect text files and normalize line endings to LF
+* text=auto
+
+# Ensure files with these extensions are always treated as text and convert to OS line endings
+*.html text
+*.css text
+*.js text
+*.json text
+*.md text
+*.txt text
+*.yml text
+*.yaml text
+*.xml text
+*.sql text
+*.py text
+*.java text
+*.c text
+*.cpp text
+*.h text
+*.cs text
+*.php text
+*.rb text
+*.go text
+*.rs text
+*.ts text
+*.tsx text
+*.vue text
+*.scss text
+*.sass text
+*.less text
+
+# Script files: ensure correct line endings
+*.sh text eol=lf
+*.bash text eol=lf
+*.cmd text eol=crlf
+*.bat text eol=crlf
+*.ps1 text eol=crlf
+
+# Binary files: should not be modified
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.zip binary
+*.gz binary
+*.tar binary
+*.rar binary
+*.exe binary
+*.dll binary
+*.so binary
+*.dylib binary
+*.class binary
+*.jar binary
+*.war binary
+*.ear binary
+
+# Documentation files
+*.pdf binary
+*.doc binary
+*.docx binary
+*.xls binary
+*.xlsx binary
+*.ppt binary
+*.pptx binary
+
+# Exclude node_modules from line ending processing
+node_modules/ -text
+quiz-api/node_modules/ -text
+
+# Exclude .git directory
+.git/ -text

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>活动详情 - 人工智能协会 · 党建文化平台</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Toast -->
+  <div id="toast"></div>
+
+  <!-- Top Navigation -->
+  <nav id="topnav">
+    <div class="nav-wrap">
+      <div class="nav-logo" onclick="window.location.href='index.html'">
+        <div class="nav-logo-icon">★</div>
+        <div><div class="nav-logo-text">人工智能协会 · 党建文化</div></div>
+      </div>
+      <div class="nav-links">
+        <div class="nav-link" onclick="window.location.href='index.html'">首 页</div>
+        <div class="nav-link" onclick="window.location.href='party.html'">党建引领专区</div>
+        <div class="nav-link" onclick="window.location.href='showcase.html'">社团风采</div>
+        <div class="nav-link" onclick="window.location.href='activities.html'">党建活动</div>
+        <div class="nav-link" onclick="window.location.href='study.html'">学习中心</div>
+        <div class="nav-link" onclick="window.location.href='chat.html'">AI智能问答</div>
+        <div class="nav-link" onclick="window.location.href='message.html'">留言板</div>
+      </div>
+      <div class="nav-right" id="navRight">
+        <button class="nav-btn" onclick="toggleTheme()">🌙 深色</button>
+        <button class="nav-btn nav-btn-login" onclick="window.location.href='login.html'">登 录</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <div class="detail-hero">
+    <div class="container">
+      <div class="breadcrumb">
+        <span onclick="window.location.href='index.html'" style="cursor:pointer;">首页</span>
+        <span class="breadcrumb-sep">›</span>
+        <span onclick="window.location.href='activities.html'" style="cursor:pointer;">党建活动</span>
+        <span class="breadcrumb-sep">›</span>
+        <span>活动详情</span>
+      </div>
+      <div class="detail-hero-title">2024年第四季度主题党日活动</div>
+      <div class="detail-hero-meta">
+        <span>📅 2024-12-20 14:00</span>
+        <span>📍 图书馆报告厅</span>
+        <span class="badge badge-green" style="background:rgba(255,255,255,0.15);color:#fff;">报名中</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-body">
+    <div style="display:grid;grid-template-columns:1fr 320px;gap:24px;" class="grid-detail-layout">
+      <div>
+        <div class="card" style="padding:32px;margin-bottom:20px;">
+          <h3 style="font-size:18px;font-weight:700;margin-bottom:16px;">活动详情</h3>
+          <div class="detail-content">
+            <p>本次主题党日活动以"学思想、强党性、重实践、建新功"为主题，深入贯彻党的二十大精神，引领广大党员在实践中担当作为。</p>
+            <p>活动将邀请资深党务工作者作专题报告，组织开展党史知识竞赛、先进事迹分享、党员承诺书签署等系列活动。</p>
+            <h3>活动安排</h3>
+            <p>14:00 - 活动签到</p>
+            <p>14:30 - 专题报告</p>
+            <p>15:30 - 党史知识竞赛</p>
+            <p>16:30 - 党员承诺书签署</p>
+            <p>17:00 - 活动结束</p>
+          </div>
+        </div>
+        <div class="card" style="padding:32px;">
+          <h3 style="font-size:18px;font-weight:700;margin-bottom:16px;">📸 活动照片/视频回顾</h3>
+          <div class="alert alert-info">本活动尚未开始，活动结束后将上传照片和视频回顾</div>
+        </div>
+      </div>
+      <div>
+        <div class="card" style="padding:24px;margin-bottom:16px;">
+          <div style="font-weight:700;font-size:15px;margin-bottom:16px;">📋 活动信息</div>
+          <div style="display:flex;flex-direction:column;gap:12px;font-size:14px;color:var(--text2);">
+            <div><span style="color:var(--text3);">活动时间：</span>2024-12-20 14:00</div>
+            <div><span style="color:var(--text3);">结束时间：</span>2024-12-20 17:00</div>
+            <div><span style="color:var(--text3);">活动地点：</span>图书馆报告厅</div>
+            <div><span style="color:var(--text3);">活动类型：</span><span class="badge badge-red">党日活动</span></div>
+            <div><span style="color:var(--text3);">报名截止：</span>2024-12-18</div>
+            <div><span style="color:var(--text3);">人数限制：</span>50人</div>
+            <div><span style="color:var(--text3);">已报名：</span>28人</div>
+          </div>
+          <button class="btn btn-red" style="width:100%;justify-content:center;margin-top:20px;" onclick="openSignupModal()">🎉 立即报名</button>
+          <button class="btn btn-outline btn-sm" style="width:100%;justify-content:center;margin-top:10px;">📍 签到入口</button>
+        </div>
+        <div class="card" style="padding:24px;">
+          <div style="font-weight:700;font-size:15px;margin-bottom:12px;">⚠️ 注意事项</div>
+          <ul style="font-size:13px;color:var(--text2);line-height:2;padding-left:16px;">
+            <li>请提前10分钟到场，凭报名记录签到</li>
+            <li>党员同志须佩戴党徽出席</li>
+            <li>活动全程禁止使用手机</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Signup Modal -->
+  <div class="modal-overlay" id="signupModal">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('signupModal')">✕</button>
+      <div class="modal-title">🎉 活动报名</div>
+      <div class="alert alert-info">报名活动：<strong>2024年第四季度主题党日活动</strong></div>
+      <div class="form-group"><label class="form-label">姓名</label><input class="form-input" placeholder="请输入真实姓名"></div>
+      <div class="form-group"><label class="form-label">学号</label><input class="form-input" placeholder="请输入学号"></div>
+      <div class="form-group"><label class="form-label">院系</label><input class="form-input" placeholder="请输入所在院系"></div>
+      <div class="form-group"><label class="form-label">身份</label>
+        <select class="form-select"><option>党员</option><option>预备党员</option><option>入党积极分子</option><option>普通成员</option></select>
+      </div>
+      <div class="form-group"><label class="form-label">联系方式</label><input class="form-input" placeholder="手机号或微信号"></div>
+      <div class="modal-footer">
+        <button class="btn btn-outline btn-sm" onclick="closeModal('signupModal')">取消</button>
+        <button class="btn btn-red" onclick="doSignup()">✅ 确认报名</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><div class="footer-brand-title">人工智能协会</div><div class="footer-brand-desc">以党建为引领，以智汇为纽带，以AI为翼。</div></div>
+        <div>
+          <div class="footer-col-title">快速导航</div>
+          <a href="index.html" class="footer-link">首页</a>
+          <a href="party.html" class="footer-link">党建引领专区</a>
+          <a href="activities.html" class="footer-link">党建活动</a>
+        </div>
+        <div>
+          <div class="footer-col-title">功能模块</div>
+          <a href="study.html" class="footer-link">学习中心</a>
+          <a href="chat.html" class="footer-link">AI智能问答</a>
+        </div>
+      </div>
+      <div class="footer-bottom"><div class="footer-copy">© 2024 <span>人工智能协会</span> · 党建文化平台</div></div>
+    </div>
+  </footer>
+
+  <script src="common.js"></script>
+  <script>
+    function openSignupModal() {
+      document.getElementById('signupModal').classList.add('open');
+    }
+
+    function doSignup() {
+      showToast('✅ 报名成功！我们会尽快与您联系确认');
+      closeModal('signupModal');
+    }
+  </script>
+</body>
+</html>

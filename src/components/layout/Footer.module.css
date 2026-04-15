@@ -1,0 +1,167 @@
+/* ============================================================
+   页脚样式
+   ============================================================ */
+
+.footer {
+  background: linear-gradient(135deg, #4a0000, #960000);
+  color: rgba(255, 255, 255, 0.85);
+  padding: 60px 0 30px;
+  margin-top: auto;
+  border-top: 1px solid rgba(201, 168, 76, 0.2);
+}
+
+.footerGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+/* 品牌介绍样式 */
+.footerBrand {
+  grid-column: 1;
+}
+
+.footerBrandTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 16px;
+  letter-spacing: 1px;
+}
+
+.footerBrandDesc {
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* 栏目样式 */
+.footerCol {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footerColTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--gold-light);
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.3);
+  padding-bottom: 8px;
+}
+
+/* 链接样式 */
+.footerLink {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footerLink:hover {
+  color: #fff;
+  transform: translateX(4px);
+}
+
+/* 底部版权信息 */
+.footerBottom {
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footerCopy {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.footerCopy span {
+  color: var(--gold-light);
+  font-weight: 500;
+}
+
+.footerSlogan {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.3);
+  letter-spacing: 2px;
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+  .footerGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+
+  .footerBrand {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 40px 0 20px;
+  }
+
+  .footerGrid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .footerBrand {
+    grid-column: 1;
+  }
+
+  .footerBottom {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 30px 0 20px;
+  }
+
+  .footerBrandTitle {
+    font-size: 18px;
+  }
+
+  .footerBrandDesc {
+    font-size: 13px;
+  }
+
+  .footerColTitle {
+    font-size: 15px;
+  }
+
+  .footerLink {
+    font-size: 13px;
+  }
+
+  .footerCopy {
+    font-size: 12px;
+  }
+
+  .footerSlogan {
+    font-size: 11px;
+  }
+}
+
+/* 暗色主题适配 */
+[data-theme="dark"] .footer {
+  background: linear-gradient(135deg, #2a0000, #5a0000);
+}
+
+[data-theme="dark"] .footerLink:hover {
+  color: var(--gold-light);
+}

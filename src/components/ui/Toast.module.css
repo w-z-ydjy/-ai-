@@ -1,0 +1,150 @@
+/* ============================================================
+   Toast消息提示样式
+   ============================================================ */
+
+.toastContainer {
+  position: fixed;
+  top: 100px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 400px;
+  pointer-events: none;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  background: var(--bg2);
+  color: var(--text);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border-left: 4px solid;
+  animation: toastSlideIn 0.3s ease-out;
+  pointer-events: auto;
+  min-width: 280px;
+  max-width: 400px;
+}
+
+.toastSuccess {
+  border-left-color: #10b981;
+  background: var(--bg2);
+}
+
+.toastError {
+  border-left-color: var(--red);
+  background: var(--bg2);
+}
+
+.toastWarning {
+  border-left-color: #f59e0b;
+  background: var(--bg2);
+}
+
+.toastInfo {
+  border-left-color: var(--blue);
+  background: var(--bg2);
+}
+
+.toastIcon {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.toastMessage {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.toastClose {
+  background: none;
+  border: none;
+  color: var(--text3);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 8px;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.toastClose:hover {
+  color: var(--text);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* 动画 */
+@keyframes toastSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) translateY(0);
+  }
+}
+
+@keyframes toastSlideOut {
+  from {
+    opacity: 1;
+    transform: translateX(0) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%) translateY(-20px);
+  }
+}
+
+.toast-exit {
+  animation: toastSlideOut 0.3s ease-out forwards;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .toastContainer {
+    top: 80px;
+    right: 16px;
+    left: 16px;
+    max-width: 100%;
+  }
+
+  .toast {
+    min-width: auto;
+    max-width: 100%;
+  }
+}
+
+/* 暗色主题适配 */
+[data-theme="dark"] .toastClose:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .toastSuccess {
+  background: var(--bg2);
+}
+
+[data-theme="dark"] .toastError {
+  background: var(--bg2);
+}
+
+[data-theme="dark"] .toastWarning {
+  background: var(--bg2);
+}
+
+[data-theme="dark"] .toastInfo {
+  background: var(--bg2);
+}
